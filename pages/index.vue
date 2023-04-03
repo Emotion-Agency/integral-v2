@@ -7,5 +7,15 @@ definePageMeta({
 </script>
 
 <template>
-  <h1>Hello from Emotion!</h1>
+  <section class="section section--nm home-1">
+    <video class="home-1__bg" autoplay muted loop>
+      <source src="/images/main.webm" type="video/webm" />
+    </video>
+    <div class="container home-1__wrapper">
+      <h1 class="home-1__title">
+        A multidisciplinary creative consultancy shaping
+        <span class="home-1__underline-text"> digital culture </span>
+      </h1>
+    </div>
+  </section>
 </template>

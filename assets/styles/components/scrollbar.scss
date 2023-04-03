@@ -30,7 +30,7 @@
   overflow: hidden;
   padding: 2px;
   padding-left: 0px;
-  @media (min-width: $br2) {
+  @media (min-width: $br1) {
     &:hover {
       .scrollbar__thumb {
         width: 10px;
