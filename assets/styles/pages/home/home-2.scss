@@ -1,0 +1,50 @@
+.home-2 {
+  padding-top: 130px;
+  padding-bottom: 212px;
+
+  @media (max-width: $br1) {
+    padding-top: 52px;
+    padding-bottom: 82px;
+  }
+}
+
+.home-2__about-text {
+  // @include suisse-small;
+
+  .about-info__arrow {
+    svg {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+
+      @media (max-width: $br1) {
+        width: 7px;
+        height: 7px;
+      }
+    }
+  }
+}
+
+.home-2__text {
+  // @include suisse-med;
+  margin-top: 96px;
+  font-size: 32px;
+  max-width: 768px;
+
+  @media (max-width: $br1) {
+    margin-top: 52px;
+    font-size: 16px;
+    line-height: 130%;
+    max-width: 60%;
+  }
+
+  @media (max-width: $br3) {
+    max-width: 100%;
+  }
+}
+
+.home-2__underline-text {
+  display: inline-block;
+  position: relative;
+  @include underline;
+}

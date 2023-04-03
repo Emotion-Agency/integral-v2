@@ -19,6 +19,7 @@ body {
   overscroll-behavior-y: none;
   height: var(--vh);
   @include smooth-font;
+  background-color: var(--black);
 
   @media (max-width: $br1) {
     font-size: 16px;

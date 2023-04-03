@@ -28,14 +28,10 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(12, 1fr);
-  column-gap: vw(30);
-  grid-auto-flow: column;
+  grid-auto-flow: row;
+
   @media (max-width: $br1) {
-    column-gap: 30px;
-  }
-  @media (max-width: $br4) {
-    column-gap: 20px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(8, 1fr);
   }
 }
 
@@ -55,16 +51,26 @@
   &--pb {
     padding-bottom: vw(300);
   }
+
   @media (max-width: $br1) {
     padding-top: 200px;
     &--pb {
       padding-bottom: 200px;
     }
+
+    &--nm {
+      padding-top: 0;
+    }
   }
+
   @media (max-width: $br3) {
     padding-top: 120px;
     &--pb {
       padding-bottom: 120px;
+    }
+
+    &--nm {
+      padding-top: 0;
     }
   }
 }
