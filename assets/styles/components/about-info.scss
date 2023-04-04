@@ -1,5 +1,5 @@
 .about-info {
-  // @include suisse-med;
+  @include suisse-small;
   display: inline-block;
   color: var(--dark);
 }
@@ -7,12 +7,17 @@
 .about-info__arrow {
   svg {
     display: inline-block;
-    width: 18px;
-    height: 18px;
+    width: vw(18);
+    height: vw(18);
 
     @media (max-width: $br1) {
-      width: 10px;
-      height: 10px;
+      width: size(18, 11);
+      height: size(18, 11);
+    }
+
+    @media (max-width: $br4) {
+      width: vw(11, $minWidth);
+      height: vw(11, $minWidth);
     }
   }
 }
