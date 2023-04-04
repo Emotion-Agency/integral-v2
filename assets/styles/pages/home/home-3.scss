@@ -1,0 +1,32 @@
+.home-3 {
+  width: 100%;
+
+  @media (min-width: $br1) {
+    height: var(--vh);
+    padding-top: vw(66);
+    padding-bottom: vw(66);
+  }
+
+  @media (max-width: $br1) {
+    margin-top: 80px;
+    padding-bottom: 120px;
+  }
+}
+
+.home-3__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.home-3__content {
+  display: block;
+  max-width: 100%;
+  aspect-ratio: aspect(1800, 949);
+
+  @media (min-width: $br1) {
+    height: 100%;
+  }
+}

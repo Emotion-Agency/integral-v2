@@ -18,7 +18,7 @@ definePageMeta({
       </h1>
     </div>
   </section>
-  <section class="section home-2">
+  <section class="section section--nm home-2">
     <div class="container home-2__wrapper">
       <AboutInfo class="home-2__about-text"
         >Empowering brands at the forefront of digital
@@ -41,6 +41,11 @@ definePageMeta({
       <div class="home-2__pages-wrapper">
         <p class="home-2__numbers"><span class="home-2__number">1</span> / 2</p>
       </div>
+    </div>
+  </section>
+  <section class="section section--nm home-3">
+    <div class="container home-3__wrapper">
+      <img class="home-3__content" src="/images/3.jpg" alt="Content" />
     </div>
   </section>
 </template>
