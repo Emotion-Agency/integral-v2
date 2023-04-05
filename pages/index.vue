@@ -48,4 +48,33 @@ definePageMeta({
       <img class="home-3__content" src="/images/3.jpg" alt="Content" />
     </div>
   </section>
+  <section class="section section--nm home-4">
+    <div class="container home-4__wrapper">
+      <div class="home-4__img-wrapper">
+        <video class="home-4__img" autoplay muted loop>
+          <source src="/images/1.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="home-4__content">
+        <AboutInfo class="home-4__about-text">About </AboutInfo>
+        <div class="home-4__text-wrapper">
+          <p class="home-4__med-desc">
+            Operating at the intersection of physical & digital, specialising
+            in; <span class="home-4__underline-text">brand</span>,
+            <span class="home-4__underline-text">fashion</span>,
+            <span class="home-4__underline-text">product</span> &
+            <span class="home-4__underline-text">web3</span>.
+          </p>
+          <p class="home-4__small-desc">
+            With deep knowledge broadly spanning design, fashion & web3, we help
+            our partners grow through our innate understanding of the drivers
+            behind tomorrow’s trends and opportunities.
+          </p>
+          <div class="home-4__btn-wrapper">
+            <TheButton> Studio </TheButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
