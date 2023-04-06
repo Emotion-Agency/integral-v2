@@ -51,6 +51,18 @@ definePageMeta({
   <section class="section section--nm home-4">
     <div class="container home-4__wrapper">
       <AboutInfo class="home-4__mob-text">About </AboutInfo>
+
+      <div class="home-4__info-wrapper home-4__info-wrapper--1">
+        <p class="home-4__info-text">
+          Redefining
+          <span class="home-4__arrow-part">
+            <span class="home-4__arrow-text">&lt;&gt;</span> brand
+            <span class="home-4__arrow-text">&lt;/&gt;</span>
+          </span>
+          <span class="home-4__text-part">dimensionalities</span>
+          <IconsLeftAngleArrow class="home-4__arrow" />
+        </p>
+      </div>
       <div class="home-4__img-wrapper">
         <video class="home-4__img" autoplay muted loop>
           <source src="/images/1.webm" type="video/webm" />
@@ -58,7 +70,7 @@ definePageMeta({
       </div>
       <div class="home-4__content">
         <AboutInfo class="home-4__about-text">About </AboutInfo>
-        <div class="home-4__info-wrapper">
+        <div class="home-4__info-wrapper home-4__info-wrapper--2">
           <p class="home-4__info-text">
             Redefining
             <span class="home-4__arrow-part">
@@ -69,7 +81,6 @@ definePageMeta({
             <IconsLeftAngleArrow class="home-4__arrow" />
           </p>
         </div>
-
         <div class="home-4__text-wrapper">
           <p class="home-4__med-desc">
             Operating at the intersection of physical & digital, specialising
