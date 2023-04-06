@@ -1,0 +1,58 @@
+.nav-hidden {
+  .navbar {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.header {
+  position: fixed;
+  padding: 28px 0;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  background-color: linear-gradient(
+    180deg,
+    var(--black) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  backdrop-filter: blur(6px);
+
+  &.loading {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  @media (max-width: $br1) {
+    padding: 14px 0;
+  }
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  @include suisse-small;
+  font-size: 24px;
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+  }
+}
+
+.header__btn {
+  @include suisse-small;
+  line-height: 100%;
+  background-color: transparent;
+  color: var(--grey);
+  font-size: 20px;
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+  }
+}
