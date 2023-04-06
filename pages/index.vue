@@ -9,7 +9,7 @@ definePageMeta({
 <template>
   <main>
     <section class="section section--nm home-1">
-      <TheVideo class="home-1__bg" src="/images/main.mp4" />
+      <TheVideo class="home-1__bg" src="/video/main.mp4" />
       <div class="container home-1__wrapper">
         <h1 class="home-1__title">
           A multidisciplinary creative consultancy shaping
@@ -65,7 +65,7 @@ definePageMeta({
           </p>
         </div>
         <div class="home-4__img-wrapper">
-          <TheVideo class="home-4__img" src="/images/1.mp4" />
+          <TheVideo class="home-4__img" src="/video/1.mp4" />
         </div>
         <div class="home-4__content">
           <AboutInfo class="home-4__about-text">About </AboutInfo>
