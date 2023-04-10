@@ -24,6 +24,7 @@ onBeforeUnmount(() => {
 
 <template>
   <header ref="$header" class="header navbar">
+    <div class="header__bg"></div>
     <div class="container header__wrapper">
       <NuxtLink to="/" class="header__logo">Integral</NuxtLink>
       <button class="header__btn" @click="onClick">

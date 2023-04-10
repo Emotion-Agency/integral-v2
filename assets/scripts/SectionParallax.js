@@ -20,14 +20,12 @@ export class SectionParallax {
 
   get $wrapper() {
     return this.$els.map($el => {
-      const pinSpacer = $el.closest('.pin-spacer')
-      return pinSpacer || $el.closest('[data-parallax-wrapper]')
+      return $el.closest('[data-parallax-wrapper]')
     })
   }
 
   get $prevSection() {
     return this.$wrapper.map($el => {
-      // const pinSpacer = $el.closest('.pin-spacer')
       return $el.previousSibling
     })
   }
@@ -45,9 +43,7 @@ export class SectionParallax {
         this.outAnimate($el)
       }
 
-      if (!this.$wrapper[i].classList.contains('pin-spacer')) {
-        this.$wrapper[i].style.height = $el.offsetHeight + 'px'
-      }
+      this.$wrapper[i].style.height = $el.offsetHeight + 'px'
 
       if (b.bottom > offset && b.top < 200) {
         $el.style.position = 'fixed'

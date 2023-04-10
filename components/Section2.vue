@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import { resize } from '@emotionagency/utils'
 const $el = ref<HTMLElement>(null)
 const $text1 = ref<HTMLElement>(null)
 const $text2 = ref<HTMLElement>(null)
@@ -13,10 +14,11 @@ const initTimeline = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: $el.value,
-      start: 'top top',
-      end: 'bottom bottom-=150%',
+      start: () => 'top top',
+      end: () => 'bottom bottom',
       scrub: 0.1,
       pin: true,
+      pinSpacing: false,
     },
     defaults: {
       ease: 'linear.none',
@@ -27,17 +29,17 @@ const initTimeline = () => {
     $text1.value,
 
     {
-      opacity: 0,
+      opacity: () => 0,
     }
   )
   tl.to($text2.value, {
-    opacity: 1,
+    opacity: () => 1,
   })
 
   tl.to(
     $counter1.value,
     {
-      y: '-100%',
+      y: () => '-100%',
     },
     0
   )
@@ -45,13 +47,17 @@ const initTimeline = () => {
   tl.fromTo(
     $counter2.value,
     {
-      y: '100%',
+      y: () => '100%',
     },
     {
-      y: '0%',
+      y: () => '0%',
     },
     0.1
   )
+
+  resize.on(() => {
+    tl.scrollTrigger.refresh()
+  })
 
   return tl
 }
@@ -64,7 +70,7 @@ onMounted(() => {
 <template>
   <div data-parallax-wrapper>
     <div ref="$parallax" data-parallax data-offset="0">
-      <div ref="$el" class="pin-wrapper">
+      <div ref="$el" class="pin-wrapper" style="height: 220vh">
         <section class="section section--nm home-2">
           <div class="container home-2__wrapper">
             <AboutInfo class="home-2__about-text"

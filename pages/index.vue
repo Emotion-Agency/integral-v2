@@ -17,7 +17,9 @@ const sectionParallaxInit = async () => {
 }
 
 onMounted(() => {
-  sectionParallaxInit()
+  setTimeout(() => {
+    sectionParallaxInit()
+  }, 100)
 })
 
 onBeforeUnmount(() => {
