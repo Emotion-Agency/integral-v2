@@ -7,11 +7,13 @@ const onClick = () => {
 
 let navbarPos
 
+const $header = ref<HTMLElement>()
+
 onMounted(async () => {
   const { default: NavbarPos } = await import(
     '~/assets/scripts/utils/navbarPos'
   )
-  navbarPos = new NavbarPos()
+  navbarPos = new NavbarPos($header.value)
   navbarPos.init()
 })
 
@@ -21,7 +23,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <header class="header navbar">
+  <header ref="$header" class="header navbar">
     <div class="container header__wrapper">
       <NuxtLink to="/" class="header__logo">Integral</NuxtLink>
       <button class="header__btn" @click="onClick">
