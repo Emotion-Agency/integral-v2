@@ -3,6 +3,7 @@
   width: 100%;
   padding-top: vw(120);
   padding-bottom: vw(90);
+  background-color: var(--black);
 
   @media (max-width: $br1) {
     padding-top: 40px;
@@ -30,10 +31,9 @@
 .home-2__text {
   @include suisse-med;
   max-width: vw(1050);
-  display: none;
-
-  &--active {
-    display: block;
+  opacity: 0;
+  &:nth-of-type(1) {
+    opacity: 1;
   }
 
   &:last-of-type {
@@ -91,5 +91,17 @@
 .home-2__numbers {
   position: absolute;
   bottom: 0;
+  overflow: hidden;
   right: 0;
+}
+
+.home-2__number {
+  display: inline-block;
+  &--1 {
+    position: absolute;
+    left: 2px;
+  }
+  &--2 {
+    transform: translateY(100%);
+  }
 }

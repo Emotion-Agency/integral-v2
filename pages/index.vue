@@ -4,6 +4,25 @@ import { pageTransition } from '~~/assets/scripts/transition'
 definePageMeta({
   pageTransition,
 })
+
+let sp
+const $parallax = ref<NodeListOf<HTMLElement>>(null)
+
+const sectionParallaxInit = async () => {
+  const { SectionParallax } = await import('~/assets/scripts/SectionParallax')
+
+  const $parallaxItems = document.querySelectorAll('[data-parallax]')
+  sp = new SectionParallax($parallaxItems)
+  sp.init()
+}
+
+onMounted(() => {
+  sectionParallaxInit()
+})
+
+onBeforeUnmount(() => {
+  sp && sp.destroy()
+})
 </script>
 
 <template>
@@ -17,38 +36,16 @@ definePageMeta({
         </h1>
       </div>
     </section>
-    <section class="section section--nm home-2">
-      <div class="container home-2__wrapper">
-        <AboutInfo class="home-2__about-text"
-          >Empowering brands at the forefront of digital
-        </AboutInfo>
-        <div class="home-2__text-wrapper">
-          <p class="home-2__text home-2__text--active">
-            Integral is a multi-disciplinary design studio, catalysing insights
-            with technology to build thoughtful
-            <span class="home-2__underline-text">design-led solutions</span> for
-            dynamic global clients.
-          </p>
-          <p class="home-2__text">
-            Spanning strategy, creative direction and production, we deliver
-            innovative and engaging experiences that
-            <span class="home-2__underline-text"
-              >connect brands with their audiences.</span
-            >
-          </p>
-        </div>
-        <div class="home-2__pages-wrapper">
-          <p class="home-2__numbers">
-            <span class="home-2__number">1</span> / 2
-          </p>
-        </div>
+    <Section2 />
+    <div data-parallax-wrapper>
+      <div ref="$parallax" data-parallax data-offset="0">
+        <section class="section section--nm home-3">
+          <div class="container home-3__wrapper">
+            <TheVideo class="home-3__content" src="/video/main.mp4" />
+          </div>
+        </section>
       </div>
-    </section>
-    <section class="section section--nm home-3">
-      <div class="container home-3__wrapper">
-        <img class="home-3__content" src="/images/3.jpg" alt="Content" />
-      </div>
-    </section>
+    </div>
     <section class="section section--nm home-4">
       <div class="container home-4__wrapper">
         <AboutInfo class="home-4__mob-text">About </AboutInfo>

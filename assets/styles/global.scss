@@ -43,3 +43,7 @@ body {
 .page-leave-to {
   opacity: 0;
 }
+
+[data-parallax-wrapper] {
+  pointer-events: none;
+}
