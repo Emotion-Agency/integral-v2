@@ -37,7 +37,7 @@
   background: linear-gradient(-90deg, #000000 0%, rgba(0, 0, 0, 0) 120%);
   backdrop-filter: blur(12px);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   flex-direction: column;
   padding: 112px 96px;
@@ -46,7 +46,6 @@
 
   @media (max-width: $br1) {
     width: 65%;
-    row-gap: 40px;
     padding: 60px 48px;
   }
 
@@ -62,20 +61,33 @@
 
 .popup__nav-menu {
   @include suisse-med;
-  font-size: 48px;
+  font-size: vw(48);
 
   @media (max-width: $br1) {
-    font-size: 24px;
+    font-size: size(36, 24);
+  }
+
+  @media (max-width: $br4) {
+    font-size: vw(24, $minWidth);
   }
 }
 
 .popup__socials-menu {
   @include suisse-small;
-  margin-top: 20px;
-  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: vw(12);
+  margin-top: vw(40);
+  font-size: vw(20);
+  line-height: 100%;
 
   @media (max-width: $br1) {
-    font-size: 12px;
-    margin-top: 12px;
+    font-size: size(16, 12);
+    margin-top: 20px;
+    row-gap: 4px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: vw(12, $minWidth);
   }
 }
