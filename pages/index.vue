@@ -1,21 +1,34 @@
 <script setup lang="ts">
+import gsap from 'gsap'
+import { shuffleText } from '~/assets/scripts/shuffleText'
 import { pageTransition } from '~~/assets/scripts/transition'
-import { SectionRevealer } from '~/assets/scripts/SectionRevealer'
 
 definePageMeta({
   pageTransition,
 })
 
-const $revealSection = ref<HTMLElement>(null)
-const sp = ref(null)
+const $h1 = ref<HTMLElement>(null)
 
 onMounted(() => {
-  sp.value = new SectionRevealer($revealSection.value)
-  sp.value.init()
-})
+  const tl = gsap.timeline()
 
-onBeforeUnmount(() => {
-  sp.value && sp.value.destroy()
+  const $h1Chars = shuffleText($h1.value)
+
+  tl.to($h1.value, { duration: 0.1, opacity: 1 }, 0)
+
+  tl.to(
+    $h1Chars,
+    {
+      duration: 0.2,
+      opacity: 1,
+      ease: 'power4.out',
+      stagger: 0.01,
+      onComplete() {
+        $h1.value.classList.add('home-1__title--underline')
+      },
+    },
+    0
+  )
 })
 </script>
 
@@ -24,22 +37,14 @@ onBeforeUnmount(() => {
     <section class="section section--nm home-1">
       <TheVideo class="home-1__bg" src="/video/main.mp4" />
       <div class="container home-1__wrapper">
-        <h1 class="home-1__title">
+        <h1 ref="$h1" class="home-1__title">
           A multidisciplinary creative consultancy shaping
           <span class="home-1__underline-text"> digital culture </span>
         </h1>
       </div>
     </section>
     <Section2 />
-    <div data-reveal-wrapper>
-      <div ref="$revealSection" data-offset="0" style="z-index: -2">
-        <section class="section section--nm home-3">
-          <div class="container home-3__wrapper">
-            <TheVideo class="home-3__content" src="/video/main.mp4" />
-          </div>
-        </section>
-      </div>
-    </div>
+    <Section3 />
     <section class="section section--nm home-4">
       <div class="container home-4__wrapper">
         <AboutInfo class="home-4__mob-text">About </AboutInfo>

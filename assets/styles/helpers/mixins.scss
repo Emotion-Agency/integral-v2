@@ -52,6 +52,9 @@
     width: 100%;
     background-color: var(--white);
     height: vw(4.5);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
 
     @media (max-width: $br1) {
       bottom: -1.5px;

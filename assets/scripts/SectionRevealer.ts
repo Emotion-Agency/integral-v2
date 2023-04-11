@@ -34,18 +34,6 @@ export class SectionRevealer {
     })
   }
 
-  onUpdateBreakpoint(cb: (...args) => any, breakpoint: number) {
-    let isUpdated = false
-
-    emitter.on(`${this.eventKey}:update`, (percent: number) => {
-      if (isUpdated) return
-      if (percent >= breakpoint) {
-        cb(clamp(percent, 0, 100))
-        isUpdated = true
-      }
-    })
-  }
-
   compute() {
     const b = this.$prevSection.getBoundingClientRect()
 

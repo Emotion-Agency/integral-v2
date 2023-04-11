@@ -31,7 +31,6 @@
 .home-2__text {
   @include suisse-med;
   max-width: vw(1050);
-  opacity: 0;
 
   .char {
     opacity: 0;
@@ -43,13 +42,6 @@
         transform: scaleX(1);
       }
     }
-  }
-
-  &:nth-of-type(1) {
-    opacity: 1;
-    // .char {
-    //   opacity: 1;
-    // }
   }
 
   &:last-of-type {

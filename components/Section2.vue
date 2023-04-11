@@ -17,6 +17,9 @@ const sp = ref(null)
 gsap.registerPlugin(ScrollTrigger)
 
 const initTimeline = async () => {
+  const $text1Chars = shuffleText($text1.value)
+  const $text2Chars = shuffleText($text2.value)
+
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: $el.value,
@@ -28,37 +31,24 @@ const initTimeline = async () => {
     },
     defaults: {
       ease: 'linear.none',
+      overwrite: true,
     },
   })
 
-  const $text1Chars = shuffleText($text1.value)
-  const $text2Chars = shuffleText($text2.value)
-
-  tl.fromTo(
-    $text1Chars,
-    {
-      opacity: () => 1,
+  const tl2 = gsap.timeline({
+    scrollTrigger: {
+      trigger: $el.value,
+      start: () => 'top-=85% top',
+      end: () => 'bottom-=75% bottom',
+      scrub: 0.1,
+      pin: false,
+      pinSpacing: false,
+      once: true,
     },
-    {
-      opacity: () => 0,
-      stagger: 0.03,
-      onComplete() {
-        $text1.value.classList.remove('home-2__text--underline')
-      },
-      onReverseComplete() {
-        $text1.value.classList.add('home-2__text--underline')
-      },
+    defaults: {
+      ease: 'linear.none',
     },
-    0.1
-  )
-
-  tl.to(
-    $text2.value,
-    {
-      opacity: () => 1,
-    },
-    3
-  )
+  })
 
   tl.to(
     $text2Chars,
@@ -94,6 +84,39 @@ const initTimeline = async () => {
     0.1
   )
 
+  tl2.to(
+    $text1Chars,
+    {
+      opacity: () => 1,
+
+      stagger: 0.01,
+      onComplete() {
+        $text1.value.classList.add('home-2__text--underline')
+        tl2.kill()
+
+        tl.fromTo(
+          $text1Chars,
+          { opacity: () => 1 },
+          {
+            opacity: () => 0,
+            stagger: 0.03,
+            onComplete() {
+              $text1.value.classList.remove('home-2__text--underline')
+            },
+            onReverseComplete() {
+              $text1.value.classList.add('home-2__text--underline')
+            },
+          },
+          0.1
+        )
+      },
+      onReverseComplete() {
+        $text1.value.classList.remove('home-2__text--underline')
+      },
+    },
+    1
+  )
+
   resize.on(() => {
     tl.scrollTrigger.refresh()
   })
@@ -103,36 +126,22 @@ const initTimeline = async () => {
   await delayPromise(10)
   sp.value.init()
 
-  sp.value.onUpdateBreakpoint((progress: number) => {
-    if (progress > 0) {
-      gsap.fromTo(
-        $text1Chars,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 0.2,
-          stagger: 0.01,
-          onComplete() {
-            $text1.value.classList.add('home-2__text--underline')
-          },
-        }
-      )
-      gsap.to($text1.value, { opacity: 1, duration: 0.2 })
-    }
-  }, 1)
-
   return tl
 }
 
 onMounted(() => {
   initTimeline()
 })
+
+onBeforeUnmount(() => {
+  sp.value && sp.value.destroy()
+})
 </script>
 
 <template>
   <div data-reveal-wrapper>
     <div ref="$revealSection" data-offset="0" style="z-index: -1">
-      <div ref="$el" class="pin-wrapper" style="height: 200vh">
+      <div ref="$el" class="pin-wrapper" style="height: 320vh">
         <section class="section section--nm home-2">
           <div class="container home-2__wrapper">
             <AboutInfo class="home-2__about-text"

@@ -30,6 +30,18 @@
 .home-1__title {
   @include h1;
   max-width: vw(610);
+  opacity: 0;
+  .char {
+    opacity: 0;
+  }
+
+  &--underline {
+    .home-1__underline-text {
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
 
   @media (max-width: $br1) {
     max-width: size(460, 300);
