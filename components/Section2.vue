@@ -1,16 +1,22 @@
 <script lang="ts" setup>
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import { resize } from '@emotionagency/utils'
+import { resize, delayPromise } from '@emotionagency/utils'
+import { shuffleText } from '~/assets/scripts/shuffleText.js'
+import { SectionRevealer } from '~/assets/scripts/SectionRevealer'
+
 const $el = ref<HTMLElement>(null)
 const $text1 = ref<HTMLElement>(null)
 const $text2 = ref<HTMLElement>(null)
 const $counter1 = ref<HTMLElement>(null)
 const $counter2 = ref<HTMLElement>(null)
 
+const $revealSection = ref<HTMLElement>(null)
+const sp = ref(null)
+
 gsap.registerPlugin(ScrollTrigger)
 
-const initTimeline = () => {
+const initTimeline = async () => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: $el.value,
@@ -25,16 +31,49 @@ const initTimeline = () => {
     },
   })
 
-  tl.to(
-    $text1.value,
+  const $text1Chars = shuffleText($text1.value)
+  const $text2Chars = shuffleText($text2.value)
 
+  tl.fromTo(
+    $text1Chars,
+    {
+      opacity: () => 1,
+    },
     {
       opacity: () => 0,
-    }
+      stagger: 0.03,
+      onComplete() {
+        $text1.value.classList.remove('home-2__text--underline')
+      },
+      onReverseComplete() {
+        $text1.value.classList.add('home-2__text--underline')
+      },
+    },
+    0.1
   )
-  tl.to($text2.value, {
-    opacity: () => 1,
-  })
+
+  tl.to(
+    $text2.value,
+    {
+      opacity: () => 1,
+    },
+    3
+  )
+
+  tl.to(
+    $text2Chars,
+    {
+      opacity: () => 1,
+      stagger: 0.03,
+      onComplete() {
+        $text2.value.classList.add('home-2__text--underline')
+      },
+      onReverseComplete() {
+        $text2.value.classList.remove('home-2__text--underline')
+      },
+    },
+    3
+  )
 
   tl.to(
     $counter1.value,
@@ -59,6 +98,29 @@ const initTimeline = () => {
     tl.scrollTrigger.refresh()
   })
 
+  sp.value = new SectionRevealer($revealSection.value)
+
+  await delayPromise(10)
+  sp.value.init()
+
+  sp.value.onUpdateBreakpoint((progress: number) => {
+    if (progress > 0) {
+      gsap.fromTo(
+        $text1Chars,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.2,
+          stagger: 0.01,
+          onComplete() {
+            $text1.value.classList.add('home-2__text--underline')
+          },
+        }
+      )
+      gsap.to($text1.value, { opacity: 1, duration: 0.2 })
+    }
+  }, 1)
+
   return tl
 }
 
@@ -68,9 +130,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div data-parallax-wrapper>
-    <div ref="$parallax" data-parallax data-offset="0">
-      <div ref="$el" class="pin-wrapper" style="height: 220vh">
+  <div data-reveal-wrapper>
+    <div ref="$revealSection" data-offset="0" style="z-index: -1">
+      <div ref="$el" class="pin-wrapper" style="height: 200vh">
         <section class="section section--nm home-2">
           <div class="container home-2__wrapper">
             <AboutInfo class="home-2__about-text"

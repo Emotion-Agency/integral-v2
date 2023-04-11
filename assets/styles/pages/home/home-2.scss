@@ -32,8 +32,24 @@
   @include suisse-med;
   max-width: vw(1050);
   opacity: 0;
+
+  .char {
+    opacity: 0;
+  }
+
+  &--underline {
+    .home-2__underline-text {
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+
   &:nth-of-type(1) {
     opacity: 1;
+    // .char {
+    //   opacity: 1;
+    // }
   }
 
   &:last-of-type {
@@ -63,6 +79,9 @@
 
   &::before {
     height: vw(3);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
 
     @media (max-width: $br1) {
       height: size(3, 1.5);

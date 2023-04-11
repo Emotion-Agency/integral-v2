@@ -1,29 +1,21 @@
 <script setup lang="ts">
 import { pageTransition } from '~~/assets/scripts/transition'
+import { SectionRevealer } from '~/assets/scripts/SectionRevealer'
 
 definePageMeta({
   pageTransition,
 })
 
-let sp
-const $parallax = ref<NodeListOf<HTMLElement>>(null)
-
-const sectionParallaxInit = async () => {
-  const { SectionParallax } = await import('~/assets/scripts/SectionParallax')
-
-  const $parallaxItems = document.querySelectorAll('[data-parallax]')
-  sp = new SectionParallax($parallaxItems)
-  sp.init()
-}
+const $revealSection = ref<HTMLElement>(null)
+const sp = ref(null)
 
 onMounted(() => {
-  setTimeout(() => {
-    sectionParallaxInit()
-  }, 100)
+  sp.value = new SectionRevealer($revealSection.value)
+  sp.value.init()
 })
 
 onBeforeUnmount(() => {
-  sp && sp.destroy()
+  sp.value && sp.value.destroy()
 })
 </script>
 
@@ -39,8 +31,8 @@ onBeforeUnmount(() => {
       </div>
     </section>
     <Section2 />
-    <div data-parallax-wrapper>
-      <div ref="$parallax" data-parallax data-offset="0">
+    <div data-reveal-wrapper>
+      <div ref="$revealSection" data-offset="0" style="z-index: -2">
         <section class="section section--nm home-3">
           <div class="container home-3__wrapper">
             <TheVideo class="home-3__content" src="/video/main.mp4" />
