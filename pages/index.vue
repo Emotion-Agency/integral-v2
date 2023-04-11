@@ -21,7 +21,7 @@ onMounted(() => {
     {
       duration: 0.2,
       opacity: 1,
-      ease: 'power4.out',
+      ease: 'power2.out',
       stagger: 0.01,
       onComplete() {
         $h1.value.classList.add('home-1__title--underline')

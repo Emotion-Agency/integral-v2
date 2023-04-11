@@ -38,7 +38,7 @@ const initTimeline = async () => {
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: $el.value,
-      start: () => 'top-=85% top',
+      start: () => 'top-=80% top',
       end: () => 'bottom-=75% bottom',
       scrub: 0.1,
       pin: false,
