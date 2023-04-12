@@ -11,6 +11,7 @@ const $text = ref<HTMLElement>(null)
 const $arrow = ref<HTMLElement>(null)
 const $about = ref<HTMLElement>(null)
 const $btn = ref<HTMLElement>(null)
+const $video = ref<HTMLElement>(null)
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -70,6 +71,13 @@ const createTimeline = () => {
   tl1.fromTo($btn.value, { opacity: 0 }, { duration: 1, opacity: 1 }, 0.5)
 
   tl1.fromTo(
+    $video.value,
+    { scale: 0.9, opacity: 0 },
+    { duration: 2, opacity: 1, scale: 1 },
+    0
+  )
+
+  tl1.fromTo(
     $h2Spans,
     { opacity: 0 },
     { duration: 0.1, opacity: 1, stagger: 0.03 },
@@ -97,7 +105,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="$el" class="pin-wrapper" style="height: 320vh">
+  <div ref="$el" class="pin-wrapper home-4-pin-wrapper" style="height: 320vh">
     <section class="section section--nm home-4">
       <div class="container home-4__wrapper">
         <AboutInfo class="home-4__mob-text">About </AboutInfo>
@@ -112,7 +120,7 @@ onMounted(() => {
             <IconsLeftAngleArrow class="home-4__arrow" />
           </h2>
         </div>
-        <div class="home-4__img-wrapper">
+        <div ref="$video" class="home-4__img-wrapper">
           <TheVideo class="home-4__img" src="/video/1_new.mp4" />
         </div>
         <div class="home-4__content">
