@@ -42,3 +42,27 @@
     font-style: #{$style};
   }
 }
+
+@mixin underline {
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--white);
+    height: vw(4.5);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+
+    @media (max-width: $br1) {
+      bottom: -1.5px;
+      height: size(4.5, 3);
+    }
+
+    @media (max-width: $br4) {
+      height: vw(3, $minWidth);
+    }
+  }
+}

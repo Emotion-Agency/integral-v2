@@ -1,1 +1,10 @@
-
+@include font('SuisseIntl', 'SuisseIntl-Regular-WebM', '400', 'normal');
+@include font('SuisseIntl', 'SuisseIntl-Regular-WebS', '400', 'normal');
+@include font('SuisseIntl', 'SuisseIntl-Regular-WebXL', '400', 'normal');
+@include font('SuisseIntlMono', 'SuisseIntlMono-Regular-WebS', '400', 'normal');
+@include font(
+  'SuisseIntlMono',
+  'SuisseIntlMono-Regular-WebXL',
+  '400',
+  'normal'
+);

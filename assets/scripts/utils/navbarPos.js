@@ -4,7 +4,8 @@ export default class NavbarPos {
   $sc = document.querySelector('#scroll-container')
   hovered = false
 
-  constructor() {
+  constructor($el) {
+    this.$navbar = $el
     this.mouseFunc = e => {
       this.mouseHandler(e)
     }
@@ -38,6 +39,8 @@ export default class NavbarPos {
     this.isHidden && this.removeVisibility()
 
     this.scrollPos = -this.$sc.scrollTop
+
+    this.isBg ? this.removeBg() : this.addBg()
   }
 
   get isHidden() {
@@ -52,6 +55,10 @@ export default class NavbarPos {
     return window.smoothScroll ? window.smoothScroll.isFixed : false
   }
 
+  get isBg() {
+    return -this.scrollPos <= window.innerHeight * 0.1
+  }
+
   addVisibility() {
     document.body.classList.remove('nav-hidden')
     document.removeEventListener('mousemove', this.mouseFunc)
@@ -60,6 +67,14 @@ export default class NavbarPos {
   removeVisibility() {
     document.body.classList.add('nav-hidden')
     document.addEventListener('mousemove', this.mouseFunc)
+  }
+
+  addBg() {
+    this.$navbar.classList.add('with-bg')
+  }
+
+  removeBg() {
+    this.$navbar.classList.remove('with-bg')
   }
 
   destroy() {

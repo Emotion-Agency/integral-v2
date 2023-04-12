@@ -30,13 +30,13 @@
   overflow: hidden;
   padding: 2px;
   padding-left: 0px;
-  @media (min-width: $br2) {
+  @media (min-width: $br1) {
     &:hover {
       .scrollbar__thumb {
         width: 10px;
         opacity: 0.7;
         border-radius: 10px;
-        background-color: var(--accent);
+        background-color: var(--dark);
       }
     }
   }
@@ -69,6 +69,6 @@
     width: 10px;
     opacity: 0.7;
     border-radius: 10px;
-    background-color: var(--accent);
+    background-color: var(--dark);
   }
 }

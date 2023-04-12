@@ -1,0 +1,118 @@
+.home-2 {
+  height: var(--vh);
+  width: 100%;
+  padding-top: vw(120);
+  padding-bottom: vw(90);
+  background-color: var(--black);
+
+  @media (max-width: $br1) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.home-2__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.home-2__text-wrapper {
+  position: relative;
+
+  @media (min-width: $br2) {
+    height: 100%;
+  }
+}
+
+.home-2__text {
+  @include suisse-med;
+  max-width: vw(1050);
+
+  .char {
+    opacity: 0;
+  }
+
+  &--underline {
+    .home-2__underline-text {
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &:last-of-type {
+    @media (max-width: $br2) {
+      margin-top: 28px;
+    }
+  }
+
+  @media (min-width: $br2) {
+    position: absolute;
+    bottom: 0;
+  }
+
+  @media (max-width: $br1) {
+    max-width: 60%;
+  }
+
+  @media (max-width: $br3) {
+    max-width: 100%;
+  }
+}
+
+.home-2__underline-text {
+  display: inline-block;
+  position: relative;
+  @include underline;
+
+  &::before {
+    height: vw(3);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+
+    @media (max-width: $br1) {
+      height: size(3, 1.5);
+    }
+
+    @media (max-width: $br4) {
+      height: vw(1.5, $minWidth);
+    }
+  }
+}
+
+.home-2__pages-wrapper {
+  @include suisse-small;
+  font-size: vw(18);
+  position: relative;
+
+  @media (max-width: $br1) {
+    font-size: size(18, 16);
+  }
+
+  @media (max-width: $br2) {
+    display: none;
+  }
+}
+
+.home-2__numbers {
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  right: 0;
+}
+
+.home-2__number {
+  display: inline-block;
+  &--1 {
+    position: absolute;
+    left: 2px;
+  }
+  &--2 {
+    transform: translateY(100%);
+  }
+}

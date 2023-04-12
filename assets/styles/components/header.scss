@@ -1,0 +1,86 @@
+.nav-hidden {
+  .navbar {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.header {
+  position: fixed;
+  padding: size(28, 14) 0;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  transition-property: transform, opacity, padding;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+
+  &.loading {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  &.with-bg {
+    .header__bg {
+      opacity: 1;
+    }
+    padding: size(24, 14) 0;
+  }
+
+  @media (max-width: $br1) {
+    padding: 14px 0;
+  }
+}
+
+.header__bg {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease;
+  background-color: linear-gradient(
+    180deg,
+    var(--black) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  backdrop-filter: blur(6px);
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.header__logo {
+  @include suisse-small;
+  font-size: size(24, 16);
+
+  @media (max-width: $br1) {
+    font-size: 24px;
+  }
+  @media (max-width: $br4) {
+    font-size: 16px;
+  }
+}
+
+.header__btn {
+  @include suisse-small;
+  line-height: 100%;
+  background-color: transparent;
+  color: var(--grey);
+  font-size: size(20, 16);
+
+  @media (max-width: $br1) {
+    font-size: 20px;
+  }
+  @media (max-width: $br4) {
+    font-size: 16px;
+  }
+}

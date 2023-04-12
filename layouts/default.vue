@@ -28,6 +28,7 @@ useHead({
     </Head>
     <AppGrid />
     <SmoothScroll>
+      <TheHeader />
       <slot />
     </SmoothScroll>
   </div>
