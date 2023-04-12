@@ -66,7 +66,7 @@ export class SectionRevealer {
 
   inAnimate($el) {
     if (!$el.classList.contains('animated-in')) {
-      console.log('animated in')
+      // console.log('animated in')
       const $img = $el.querySelector('[data-a-bg]')
       const $mask = $el.querySelector('[data-a-mask]')
 
@@ -85,7 +85,7 @@ export class SectionRevealer {
 
   outAnimate($el) {
     if (!$el.classList.contains('animated-out')) {
-      console.log('animated out')
+      // console.log('animated out')
 
       const $img = $el.querySelector('[data-a-bg]')
       const $mask = $el.querySelector('[data-a-mask]')

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import { resize } from '@emotionagency/utils'
 
 import { SectionRevealer } from '~/assets/scripts/SectionRevealer'
 
@@ -29,6 +30,10 @@ const initTimeline = () => {
   })
 
   tl.fromTo($video.value, { scale: 0.5 }, { scale: 1 }, 0)
+
+  resize.on(() => {
+    tl.scrollTrigger.refresh()
+  })
 }
 
 onMounted(() => {
@@ -49,7 +54,7 @@ onBeforeUnmount(() => {
       <div ref="$el" class="pin-wrapper" style="height: 200vh">
         <section class="section section--nm home-3">
           <div ref="$video" class="home-3__wrapper">
-            <TheVideo class="home-3__content" src="/video/main.mp4" />
+            <TheVideo class="home-3__content" src="/video/main_new.mp4" />
           </div>
         </section>
       </div>

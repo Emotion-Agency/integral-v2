@@ -27,10 +27,6 @@ const initTimeline = async () => {
     },
   })
 
-  // tl.set($el.value, {
-  //   delay: ,
-  // })
-
   ScrollTrigger.create({
     trigger: $el.value,
     start: () => 'top top',
