@@ -3,7 +3,7 @@
 
   @media (min-width: $br1) {
     height: var(--vh);
-    margin-top: vw(80);
+    // margin-top: vw(80);
     padding-top: vw(38);
     padding-bottom: vw(38);
   }
@@ -120,7 +120,6 @@
 .home-4__info-text {
   @include suisse-med;
   display: flex;
-  opacity: 0;
   flex-direction: column;
   font-size: vw(80);
   line-height: 100%;
@@ -162,7 +161,7 @@
 
 .home-4__text-part {
   position: relative;
-  text-indent: vw(125);
+  margin-left: vw(125);
 }
 
 .home-4__arrow {
