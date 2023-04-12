@@ -21,56 +21,76 @@ const initTimeline = async () => {
   const $text2Chars = shuffleText($text2.value)
 
   const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: $el.value,
-      start: () => 'top top',
-      end: () => 'bottom bottom',
-      scrub: 0.1,
-      pin: true,
-      pinSpacing: false,
-    },
     defaults: {
       ease: 'linear.none',
-      overwrite: true,
+      // overwrite: true,
     },
   })
 
-  const tl2 = gsap.timeline({
-    scrollTrigger: {
-      trigger: $el.value,
-      start: () => 'top-=80% top',
-      end: () => 'bottom-=75% bottom',
-      scrub: 0.1,
-      pin: false,
-      pinSpacing: false,
-      once: true,
-    },
-    defaults: {
-      ease: 'linear.none',
-    },
+  // tl.set($el.value, {
+  //   delay: ,
+  // })
+
+  ScrollTrigger.create({
+    trigger: $el.value,
+    start: () => 'top top',
+    end: () => 'bottom bottom',
+    scrub: true,
+    pin: true,
+    anticipatePin: 1,
+    markers: false,
+    animation: tl,
   })
 
-  tl.to(
-    $text2Chars,
+  tl.fromTo(
+    $text1Chars,
+    { opacity: () => 0 },
     {
       opacity: () => 1,
       stagger: 0.03,
       onComplete() {
-        $text2.value.classList.add('home-2__text--underline')
+        $text1.value.classList.add('home-2__text--underline')
       },
       onReverseComplete() {
-        $text2.value.classList.remove('home-2__text--underline')
+        $text1.value.classList.remove('home-2__text--underline')
       },
     },
-    3
+    '-=2'
   )
+
+  tl.fromTo(
+    $text1Chars,
+    { opacity: () => 1 },
+    {
+      opacity: () => 0,
+      stagger: 0.03,
+      onComplete() {
+        $text1.value.classList.remove('home-2__text--underline')
+      },
+      onReverseComplete() {
+        $text1.value.classList.add('home-2__text--underline')
+      },
+    },
+    '+=2'
+  )
+
+  tl.to($text2Chars, {
+    opacity: () => 1,
+    stagger: 0.03,
+    onComplete() {
+      $text2.value.classList.add('home-2__text--underline')
+    },
+    onReverseComplete() {
+      $text2.value.classList.remove('home-2__text--underline')
+    },
+  })
 
   tl.to(
     $counter1.value,
     {
       y: () => '-100%',
     },
-    0
+    '-=1'
   )
 
   tl.fromTo(
@@ -81,40 +101,7 @@ const initTimeline = async () => {
     {
       y: () => '0%',
     },
-    0.1
-  )
-
-  tl2.to(
-    $text1Chars,
-    {
-      opacity: () => 1,
-
-      stagger: 0.01,
-      onComplete() {
-        $text1.value.classList.add('home-2__text--underline')
-        tl2.kill()
-
-        tl.fromTo(
-          $text1Chars,
-          { opacity: () => 1 },
-          {
-            opacity: () => 0,
-            stagger: 0.03,
-            onComplete() {
-              $text1.value.classList.remove('home-2__text--underline')
-            },
-            onReverseComplete() {
-              $text1.value.classList.add('home-2__text--underline')
-            },
-          },
-          0.1
-        )
-      },
-      onReverseComplete() {
-        $text1.value.classList.remove('home-2__text--underline')
-      },
-    },
-    1
+    '-=0.5'
   )
 
   resize.on(() => {
