@@ -1,9 +1,17 @@
+.home-4-pin-wrapper {
+  @media (min-width: $br1) {
+    margin-top: vw(80);
+  }
+  @media (max-width: $br1) {
+    margin-top: 80px;
+  }
+}
+
 .home-4 {
   width: 100%;
 
   @media (min-width: $br1) {
     height: var(--vh);
-    // margin-top: vw(80);
     padding-top: vw(38);
     padding-bottom: vw(38);
   }
@@ -126,7 +134,7 @@
 
   @media (min-width: $br1) {
     position: absolute;
-    top: 0;
+    top: vw(120);
     left: 0;
   }
 
