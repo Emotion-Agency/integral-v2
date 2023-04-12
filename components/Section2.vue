@@ -33,6 +33,7 @@ const initTimeline = async () => {
     end: () => 'bottom bottom',
     scrub: true,
     pin: true,
+    pinSpacing: false,
     anticipatePin: 1,
     markers: false,
     animation: tl,
