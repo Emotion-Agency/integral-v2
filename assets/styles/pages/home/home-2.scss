@@ -31,6 +31,9 @@
 .home-2__text {
   @include suisse-med;
   max-width: vw(1050);
+  // @media (min-width: $br1) {
+
+  // }
 
   .char {
     opacity: 0;

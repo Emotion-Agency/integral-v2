@@ -23,7 +23,6 @@ const initTimeline = async () => {
   const tl = gsap.timeline({
     defaults: {
       ease: 'linear.none',
-      // overwrite: true,
     },
   })
 
