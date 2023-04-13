@@ -29,6 +29,7 @@
 }
 
 .home-2__text {
+  --a-progress: 0;
   @include suisse-med;
   max-width: vw(1050);
   // @media (min-width: $br1) {
@@ -74,7 +75,7 @@
 
   &::before {
     height: vw(3);
-    transform: scaleX(0);
+    transform: scaleX(var(--a-progress));
     transform-origin: left;
     transition: transform 0.6s ease;
 
