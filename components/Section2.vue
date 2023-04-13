@@ -33,7 +33,7 @@ const desktopAnimations = () => {
     end: () => 'bottom bottom',
     scrub: true,
     pin: true,
-    pinSpacing: '520px',
+    pinSpacing: false,
     anticipatePin: 1,
     markers: false,
     animation: masterTl,
@@ -134,6 +134,11 @@ const desktopAnimations = () => {
   masterTl.add(tl, 0)
   masterTl.add(tl2)
   masterTl.add(tl3, 3)
+
+  masterTl.to($text1.value, {
+    '--a-progress': () => 0,
+    duration: 5,
+  })
 
   resize.on(() => {
     masterTl.scrollTrigger.refresh()
