@@ -61,7 +61,7 @@ const desktopAnimations = () => {
     $text1.value,
     { '--a-progress': () => 0 },
     { '--a-progress': () => 1, duration: 1 },
-    0
+    3
   )
 
   tl.fromTo(
@@ -113,6 +113,15 @@ const desktopAnimations = () => {
     },
   })
 
+  ScrollTrigger.create({
+    trigger: $el.value,
+    start: () => 'top top',
+    end: () => 'bottom-=20% bottom',
+    scrub: true,
+    pin: false,
+    animation: tl3,
+  })
+
   tl3.to(
     $counter1.value,
     {
@@ -128,12 +137,12 @@ const desktopAnimations = () => {
     },
     {
       y: () => '0%',
-    }
+    },
+    1
   )
 
   masterTl.add(tl, 0)
   masterTl.add(tl2)
-  masterTl.add(tl3, 3)
 
   masterTl.to($text1.value, {
     '--a-progress': () => 0,
@@ -142,6 +151,7 @@ const desktopAnimations = () => {
 
   resize.on(() => {
     masterTl.scrollTrigger.refresh()
+    tl3.scrollTrigger.refresh()
   })
 
   return tl
