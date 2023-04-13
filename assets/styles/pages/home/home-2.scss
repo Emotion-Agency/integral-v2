@@ -23,7 +23,7 @@
 .home-2__text-wrapper {
   position: relative;
 
-  @media (min-width: $br2) {
+  @media (min-width: $br1) {
     height: 100%;
   }
 }
@@ -48,13 +48,13 @@
     }
   }
 
-  &:last-of-type {
-    @media (max-width: $br2) {
+  + .home-2__text {
+    @media (max-width: $br1) {
       margin-top: 28px;
     }
   }
 
-  @media (min-width: $br2) {
+  @media (min-width: $br1) {
     position: absolute;
     bottom: 0;
   }
@@ -96,9 +96,6 @@
 
   @media (max-width: $br1) {
     font-size: size(18, 16);
-  }
-
-  @media (max-width: $br2) {
     display: none;
   }
 }
