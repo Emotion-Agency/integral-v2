@@ -23,12 +23,13 @@
 .home-2__text-wrapper {
   position: relative;
 
-  @media (min-width: $br2) {
+  @media (min-width: $br1) {
     height: 100%;
   }
 }
 
 .home-2__text {
+  --a-progress: 0;
   @include suisse-med;
   max-width: vw(1050);
   // @media (min-width: $br1) {
@@ -47,13 +48,13 @@
     }
   }
 
-  &:last-of-type {
-    @media (max-width: $br2) {
+  + .home-2__text {
+    @media (max-width: $br1) {
       margin-top: 28px;
     }
   }
 
-  @media (min-width: $br2) {
+  @media (min-width: $br1) {
     position: absolute;
     bottom: 0;
   }
@@ -74,7 +75,7 @@
 
   &::before {
     height: vw(3);
-    transform: scaleX(0);
+    transform: scaleX(var(--a-progress));
     transform-origin: left;
     transition: transform 0.6s ease;
 
@@ -95,9 +96,6 @@
 
   @media (max-width: $br1) {
     font-size: size(18, 16);
-  }
-
-  @media (max-width: $br2) {
     display: none;
   }
 }

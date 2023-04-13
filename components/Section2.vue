@@ -8,6 +8,7 @@ import { SectionRevealer } from '~/assets/scripts/SectionRevealer'
 const $el = ref<HTMLElement>(null)
 const $text1 = ref<HTMLElement>(null)
 const $text2 = ref<HTMLElement>(null)
+const $counterParent = ref<HTMLElement>(null)
 const $counter1 = ref<HTMLElement>(null)
 const $counter2 = ref<HTMLElement>(null)
 
@@ -20,7 +21,7 @@ const desktopAnimations = () => {
   const $text1Chars = shuffleText($text1.value)
   const $text2Chars = shuffleText($text2.value)
 
-  const tl = gsap.timeline({
+  const masterTl = gsap.timeline({
     defaults: {
       ease: 'linear.none',
     },
@@ -35,8 +36,16 @@ const desktopAnimations = () => {
     pinSpacing: false,
     anticipatePin: 1,
     markers: false,
-    animation: tl,
+    animation: masterTl,
   })
+
+  const tl = gsap.timeline({
+    defaults: {
+      ease: 'linear.none',
+    },
+  })
+
+  tl.seek(-2)
 
   tl.fromTo(
     $text1Chars,
@@ -44,52 +53,84 @@ const desktopAnimations = () => {
     {
       opacity: () => 1,
       stagger: 0.03,
-      onComplete() {
-        $text1.value.classList.add('home-2__text--underline')
-      },
-      onReverseComplete() {
-        $text1.value.classList.remove('home-2__text--underline')
-      },
     },
-    '-=2'
+    0
   )
 
   tl.fromTo(
+    $text1.value,
+    { '--a-progress': () => 0 },
+    { '--a-progress': () => 1, duration: 1 },
+    3
+  )
+
+  tl.fromTo(
+    $counterParent.value,
+    { opacity: 0 },
+    { opacity: 1, duration: 1 },
+    0
+  )
+
+  const tl2 = gsap.timeline({
+    defaults: {
+      ease: 'linear.none',
+      delay: 2,
+    },
+  })
+
+  tl2.fromTo(
+    $text1.value,
+    { '--a-progress': () => 1 },
+    { '--a-progress': () => 0, duration: 1 }
+  )
+
+  tl2.fromTo(
     $text1Chars,
     { opacity: () => 1 },
     {
       opacity: () => 0,
       stagger: 0.03,
-      onComplete() {
-        $text1.value.classList.remove('home-2__text--underline')
-      },
-      onReverseComplete() {
-        $text1.value.classList.add('home-2__text--underline')
-      },
     },
-    '+=2'
+    0
   )
 
-  tl.to($text2Chars, {
+  tl2.to($text2Chars, {
     opacity: () => 1,
     stagger: 0.03,
-    onComplete() {
-      $text2.value.classList.add('home-2__text--underline')
-    },
-    onReverseComplete() {
-      $text2.value.classList.remove('home-2__text--underline')
+  })
+
+  tl2.fromTo(
+    $text2.value,
+    { '--a-progress': () => 0 },
+    { '--a-progress': () => 1, duration: 1 },
+    '-=3'
+  )
+
+  const tl3 = gsap.timeline({
+    defaults: {
+      ease: 'linear.none',
+      delay: 5,
     },
   })
 
-  tl.to(
+  ScrollTrigger.create({
+    trigger: $el.value,
+    start: () => 'top top',
+    end: () => 'bottom-=20% bottom',
+    scrub: true,
+    pin: false,
+    animation: tl3,
+  })
+
+  tl3.to(
     $counter1.value,
     {
       y: () => '-100%',
     },
-    '-=1'
+    0
   )
 
-  tl.fromTo(
+  tl3.fromTo(
     $counter2.value,
     {
       y: () => '100%',
@@ -97,11 +138,20 @@ const desktopAnimations = () => {
     {
       y: () => '0%',
     },
-    '-=0.5'
+    1
   )
 
+  masterTl.add(tl, 0)
+  masterTl.add(tl2)
+
+  masterTl.to($text1.value, {
+    '--a-progress': () => 0,
+    duration: 5,
+  })
+
   resize.on(() => {
-    tl.scrollTrigger.refresh()
+    masterTl.scrollTrigger.refresh()
+    tl3.scrollTrigger.refresh()
   })
 
   return tl
@@ -171,7 +221,6 @@ onMounted(async () => {
   })
 
   sp.value = new SectionRevealer($revealSection.value)
-
   await delayPromise(10)
   sp.value.init()
 })
@@ -201,11 +250,11 @@ onBeforeUnmount(() => {
                 Spanning strategy, creative direction and production, we deliver
                 innovative and engaging experiences that
                 <span class="home-2__underline-text"
-                  >connect brands with their audiences.</span
-                >
+                  >connect brands with their audiences</span
+                >.
               </p>
             </div>
-            <div class="home-2__pages-wrapper">
+            <div ref="$counterParent" class="home-2__pages-wrapper">
               <p class="home-2__numbers">
                 <span ref="$counter1" class="home-2__number home-2__number--1"
                   >1</span

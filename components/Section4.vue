@@ -68,7 +68,7 @@ const createTimeline = () => {
 
   tl1.fromTo($about.value, { opacity: 0 }, { duration: 1, opacity: 1 }, 0)
 
-  tl1.fromTo($btn.value, { opacity: 0 }, { duration: 1, opacity: 1 }, 0.5)
+  tl1.fromTo($btn.value, { opacity: 0 }, { duration: 1, opacity: 1 }, 2)
 
   tl1.fromTo(
     $video.value,
@@ -88,7 +88,7 @@ const createTimeline = () => {
     $textSpans,
     { opacity: 0 },
     { duration: 0.1, opacity: 1, stagger: 0.01 },
-    0
+    1
   )
 
   masterTl.add(tl)
