@@ -37,10 +37,14 @@ const initTimeline = () => {
 }
 
 onMounted(() => {
+  resize.on(() => {
+    if (window.innerWidth < 1024) {
+      return
+    }
+    initTimeline()
+  })
   sp.value = new SectionRevealer($revealSection.value)
   sp.value.init()
-
-  initTimeline()
 })
 
 onBeforeUnmount(() => {
@@ -51,7 +55,7 @@ onBeforeUnmount(() => {
 <template>
   <div data-reveal-wrapper>
     <div ref="$revealSection" data-offset="0" style="z-index: -2">
-      <div ref="$el" class="pin-wrapper" style="height: 200vh">
+      <div ref="$el" class="pin-wrapper home-3-pin-wrapper">
         <section class="section section--nm home-3">
           <div ref="$video" class="home-3__wrapper">
             <TheVideo class="home-3__content" src="/video/main_new.mp4" />

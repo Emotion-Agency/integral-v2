@@ -1,6 +1,7 @@
 .home-4-pin-wrapper {
   @media (min-width: $br1) {
     margin-top: vw(80);
+    height: 320vh;
   }
   @media (max-width: $br1) {
     margin-top: 80px;
@@ -46,7 +47,8 @@
 
   @media (max-width: $br1) {
     justify-content: center;
-    height: 640px;
+    // height: 640px;
+    width: 100%;
     margin-top: 80px;
     margin-right: 0;
   }
@@ -113,6 +115,7 @@
       justify-content: flex-end;
       width: 100%;
       margin-top: 86px;
+      padding-right: 20px;
     }
   }
 

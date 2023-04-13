@@ -100,12 +100,16 @@ const createTimeline = () => {
 }
 
 onMounted(() => {
-  createTimeline()
+  resize.on(() => {
+    if (window.innerWidth > 1024) {
+      createTimeline()
+    }
+  })
 })
 </script>
 
 <template>
-  <div ref="$el" class="pin-wrapper home-4-pin-wrapper" style="height: 320vh">
+  <div ref="$el" class="pin-wrapper home-4-pin-wrapper">
     <section class="section section--nm home-4">
       <div class="container home-4__wrapper">
         <AboutInfo class="home-4__mob-text">About </AboutInfo>

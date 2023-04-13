@@ -16,14 +16,13 @@ const sp = ref(null)
 
 gsap.registerPlugin(ScrollTrigger)
 
-const initTimeline = async () => {
+const desktopAnimations = () => {
   const $text1Chars = shuffleText($text1.value)
   const $text2Chars = shuffleText($text2.value)
 
   const tl = gsap.timeline({
     defaults: {
       ease: 'linear.none',
-      // overwrite: true,
     },
   })
 
@@ -105,16 +104,76 @@ const initTimeline = async () => {
     tl.scrollTrigger.refresh()
   })
 
+  return tl
+}
+
+const mobileAnimations = () => {
+  const $text1Chars = shuffleText($text1.value)
+  const $text2Chars = shuffleText($text2.value)
+
+  const tl = gsap.timeline({
+    defaults: {
+      ease: 'linear.none',
+    },
+  })
+
+  ScrollTrigger.create({
+    trigger: $el.value,
+    start: () => 'top top',
+    end: () => 'bottom bottom',
+    scrub: true,
+    pin: true,
+    pinSpacing: false,
+    anticipatePin: 1,
+    markers: false,
+    animation: tl,
+  })
+
+  tl.fromTo(
+    $text1Chars,
+    { opacity: () => 0 },
+    {
+      opacity: () => 1,
+      stagger: 0.03,
+      onComplete() {
+        $text1.value.classList.add('home-2__text--underline')
+      },
+      onReverseComplete() {
+        $text1.value.classList.remove('home-2__text--underline')
+      },
+    }
+  )
+
+  tl.fromTo(
+    $text2Chars,
+    { opacity: () => 0 },
+    {
+      opacity: () => 1,
+      stagger: 0.03,
+      onComplete() {
+        $text2.value.classList.add('home-2__text--underline')
+      },
+      onReverseComplete() {
+        $text2.value.classList.remove('home-2__text--underline')
+      },
+    },
+    0
+  )
+}
+
+onMounted(async () => {
+  resize.on(() => {
+    if (window.innerWidth > 1024) {
+      desktopAnimations()
+    } else {
+      mobileAnimations()
+    }
+  })
+
   sp.value = new SectionRevealer($revealSection.value)
 
   await delayPromise(10)
   sp.value.init()
-
-  return tl
-}
-
-onMounted(() => {
-  initTimeline()
 })
 
 onBeforeUnmount(() => {
