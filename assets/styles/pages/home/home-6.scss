@@ -1,0 +1,130 @@
+.home-6 {
+  height: 100vh;
+  padding-bottom: vh(60);
+  padding-top: vh(60);
+
+  @media (max-width: $br1) {
+    padding-bottom: vh(45, 1366);
+    padding-top: vh(45, 1366);
+    margin-top: 20px;
+  }
+
+  @media (max-width: $br4) {
+    padding-bottom: vh(26, 640);
+    padding-top: vh(26, 640);
+  }
+}
+
+.home-6__info-wrapper {
+  margin-top: vh(134);
+  row-gap: vh(84);
+  justify-items: center;
+
+  @media (max-width: $br1) {
+    margin-top: vh(192, 1366);
+    row-gap: vh(146, 1366);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $br4) {
+    margin-top: vh(96, 640);
+    row-gap: vh(46, 640);
+  }
+}
+
+.home-6__info {
+  color: var(--dark);
+
+  @media (min-width: $br1) {
+    &:nth-of-type(2n + 1) {
+      @include col(3, 6);
+    }
+
+    &:nth-of-type(2n + 2) {
+      @include col(7, 10);
+    }
+  }
+
+  &--active {
+    color: var(--white);
+
+    svg {
+      path {
+        fill: var(--white);
+      }
+    }
+  }
+}
+
+.home-6__title {
+  @include suisse-med;
+  font-size: vh(60);
+  display: flex;
+  align-items: baseline;
+  column-gap: vh(16);
+
+  @media (max-width: $br1) {
+    font-size: vh(48, 1366);
+    column-gap: vh(14, 1366);
+  }
+
+  @media (max-width: $br4) {
+    font-size: vh(24, 640);
+    column-gap: vh(12, 640);
+  }
+}
+
+.home-6__info-arrow {
+  width: vh(28);
+  height: vh(28);
+
+  @media (max-width: $br1) {
+    width: vh(26, 1366);
+    height: vh(26, 1366);
+  }
+
+  @media (max-width: $br4) {
+    width: vh(12, 640);
+    height: vh(12, 640);
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.home-6__text-list {
+  margin-top: vh(84);
+  margin-left: vh(150);
+
+  @media (max-width: $br1) {
+    margin-top: vh(50, 1366);
+    margin-left: vh(80, 1366);
+  }
+
+  @media (max-width: $br4) {
+    margin-top: vh(44, 640);
+    margin-left: vh(20, 640);
+  }
+}
+
+.home-6__text {
+  @include mono-med;
+  display: flex;
+  align-items: baseline;
+  column-gap: vh(14);
+  font-size: vh(20);
+  line-height: 130%;
+
+  @media (max-width: $br1) {
+    column-gap: vh(6, 1366);
+    font-size: size(18, 12);
+  }
+
+  @media (max-width: $br4) {
+    column-gap: vh(6, 640);
+    font-size: vh(12, 640);
+  }
+}
