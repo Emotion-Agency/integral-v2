@@ -1,0 +1,26 @@
+.home-8 {
+  height: var(--vh);
+  padding-top: vw(30);
+}
+
+.home-8__wrapper {
+  height: 100%;
+}
+
+.home-8__links-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: vw(75);
+  width: vw(1480);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.home-8__link {
+  @include suisse-med;
+  line-height: 100%;
+}

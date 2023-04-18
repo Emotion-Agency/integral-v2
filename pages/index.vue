@@ -49,5 +49,6 @@ onMounted(() => {
     <Section5 />
     <Section6 />
     <Section7 />
+    <Section8 />
   </main>
 </template>
