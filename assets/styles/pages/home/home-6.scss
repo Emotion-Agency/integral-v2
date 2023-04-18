@@ -106,7 +106,7 @@
 
   @media (max-width: $br4) {
     margin-top: vh(44, 640);
-    margin-left: vh(20, 640);
+    margin-left: vw(18, $minWidth);
   }
 }
 
@@ -125,6 +125,6 @@
 
   @media (max-width: $br4) {
     column-gap: vh(6, 640);
-    font-size: vh(12, 640);
+    font-size: vw(12, $minWidth);
   }
 }
