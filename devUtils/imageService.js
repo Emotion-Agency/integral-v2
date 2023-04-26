@@ -2,7 +2,7 @@
 const fs = require('fs')
 const sharp = require('sharp')
 
-const folder = 'public/images/sequence-2'
+const folder = 'public/images/sequence-1'
 
 fs.readdir(folder, (err, files) => {
   if (err) {
@@ -21,6 +21,15 @@ fs.readdir(folder, (err, files) => {
       ''
     )}.webp`
 
-    await sharp(inputPath).toFormat('webp', { quality: 82 }).toFile(outputPath)
+    await sharp(inputPath)
+      .toFormat('webp', {
+        quality: 60,
+        reductionEffort: 6,
+        smartSubsample: true,
+        alphaQuality: 0,
+        lossless: false,
+        force: true,
+      })
+      .toFile(outputPath)
   })
 })
