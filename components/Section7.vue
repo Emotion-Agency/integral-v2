@@ -13,6 +13,9 @@ const $el = ref<HTMLElement>(null)
 const $items = ref<NodeListOf<HTMLElement>>(null)
 const $counter = ref<HTMLElement>(null)
 
+let scrollSequence
+const $sequenceContainer = ref<HTMLElement>(null)
+
 const initAnimations = () => {
   const $h = []
   const $m = []
@@ -63,6 +66,17 @@ const initAnimations = () => {
     idx === 0 &&
       tlPrev.fromTo(
         $counter.value,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+        },
+        0
+      )
+
+    idx === 0 &&
+      tlPrev.fromTo(
+        $sequenceContainer.value,
         { opacity: 0 },
         {
           opacity: 1,
@@ -180,9 +194,6 @@ const initAnimations = () => {
     st.refresh()
   })
 }
-
-let scrollSequence
-const $sequenceContainer = ref<HTMLElement>(null)
 
 onMounted(async () => {
   const initImages = new Array(200).fill(0).map((_, i) => {
