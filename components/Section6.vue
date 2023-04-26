@@ -9,7 +9,7 @@ const $el = ref<HTMLElement>(null)
 const $services = ref<NodeListOf<HTMLElement>>(null)
 const activeIdx = ref(0)
 
-const initTimeline = () => {
+const initAnimations = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: $el.value,
@@ -40,7 +40,7 @@ const initTimeline = () => {
 }
 
 onMounted(() => {
-  initTimeline()
+  initAnimations()
 })
 
 const services = [

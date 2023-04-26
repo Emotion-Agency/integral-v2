@@ -15,7 +15,7 @@ const $el = ref<HTMLElement>(null)
 const $sequenceContainer = ref<HTMLElement>(null)
 const $text = ref<HTMLElement>(null)
 
-const initTimeline = () => {
+const initAnimations = () => {
   const $spans = [...$text.value.querySelectorAll('.home-5__subtext')].map(
     (el: HTMLElement) => shuffleText(el)
   )
@@ -45,7 +45,7 @@ const initTimeline = () => {
     anticipatePin: 1,
     markers: false,
     onUpdate: ({ progress }) => {
-      emitter.emit('sequence', progress * 100)
+      emitter.emit('sequence-1', progress * 100)
     },
   })
 
@@ -90,9 +90,10 @@ onMounted(async () => {
     images: initImages,
     priorityFrames: [],
     cover: true,
+    eventName: 'sequence-1',
   })
 
-  initTimeline()
+  initAnimations()
 })
 
 onBeforeUnmount(() => {

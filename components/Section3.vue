@@ -13,7 +13,7 @@ const sp = ref(null)
 
 gsap.registerPlugin(ScrollTrigger)
 
-const initTimeline = () => {
+const initAnimations = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: $el.value,
@@ -41,7 +41,7 @@ onMounted(() => {
     if (window.innerWidth < 1024) {
       return
     }
-    initTimeline()
+    initAnimations()
   })
   sp.value = new SectionRevealer($revealSection.value)
   sp.value.init()
@@ -54,11 +54,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div data-reveal-wrapper>
-    <div
-      ref="$revealSection"
-      data-offset="0"
-      style="z-index: -2"
-    >
+    <div ref="$revealSection" data-offset="0" style="z-index: -2">
       <div ref="$el" class="pin-wrapper home-3-pin-wrapper">
         <section class="section section--nm home-3">
           <div ref="$video" class="home-3__wrapper">

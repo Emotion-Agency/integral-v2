@@ -1,3 +1,7 @@
+.home-7-pin-wrapper {
+  height: 1000vh;
+}
+
 .home-7 {
   @media (min-width: $br1) {
     height: var(--vh);
@@ -74,13 +78,9 @@
 
 .home-7__info-wrapper {
   @media (min-width: $br1) {
+    opacity: 0;
     position: absolute;
     max-width: vw(560);
-    display: none;
-  }
-
-  &--active {
-    display: block;
   }
 }
 
@@ -101,11 +101,11 @@
 .home-7__med-desc {
   @include suisse-med;
   line-height: 120%;
-  margin-top: vh(150);
+  margin-top: vh(72);
 
   @media (max-width: $br1) {
     font-size: size(32, 20);
-    margin-top: 82px;
+    margin-top: 52px;
   }
 
   @media (max-width: $br4) {
@@ -128,36 +128,16 @@
 }
 
 .home-7__btn-wrapper {
-  @media (min-width: $br1) {
-    position: absolute;
-    bottom: 0;
-  }
-
+  margin-top: vh(88);
   @media (max-width: $br1) {
-    display: none;
-  }
-}
-
-.home-7__btn-mob {
-  display: none;
-
-  @media (max-width: $br1) {
-    display: block;
-    width: 100%;
-    margin-top: 108px;
-    @include col(1, 12);
-  }
-
-  @media (max-width: $br4) {
-    margin-top: 86px;
-    @include col(1, 8);
+    margin-top: 50px;
   }
 }
 
 .home-7__pages-wrapper {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: vh(86);
 
   @media (max-width: $br1) {
     display: none;
@@ -170,6 +150,27 @@
   display: flex;
   align-items: center;
   column-gap: vh(4);
+  overflow: hidden;
+  position: relative;
+}
+
+.home-7__number-val {
+  display: inline-block;
+
+  &--0 {
+    left: 2px;
+    transform: translateY(0%);
+
+    position: absolute;
+  }
+  &--1 {
+    transform: translateY(100%);
+
+    position: absolute;
+  }
+  &--2 {
+    transform: translateY(100%);
+  }
 }
 
 .home-7__img-wrapper {

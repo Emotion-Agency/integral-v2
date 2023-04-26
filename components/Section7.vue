@@ -1,5 +1,187 @@
 <script lang="ts" setup>
-const infoText = [
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import { resize } from '@emotionagency/utils'
+
+import { shuffleText } from '~/assets/scripts/shuffleText.js'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const activeIdx = ref(0)
+const $el = ref<HTMLElement>(null)
+const $items = ref<NodeListOf<HTMLElement>>(null)
+const $counter = ref<HTMLElement>(null)
+
+const initAnimations = () => {
+  const $h = []
+  const $m = []
+  const $p = []
+
+  $items.value.forEach($item => {
+    $h.push($item.querySelector('.home-7__title'))
+    $m.push($item.querySelector('.home-7__med-desc'))
+    $p.push($item.querySelector('.home-7__small-desc'))
+  })
+
+  const $hChars = $h.map(el => shuffleText(el))
+  const $mChars = $m.map(el => shuffleText(el))
+  const $pChars = $p.map(el => shuffleText(el))
+
+  const $numbers = $el.value.querySelectorAll('.home-7__number-val')
+
+  $items.value.forEach(($item, idx) => {
+    const topPos = idx * 33
+    const bottomPos = 100 - (idx + 1) * 33
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: $el.value,
+        start: () => `top+=${topPos}% top`,
+        end: () => `bottom-=${bottomPos}% bottom`,
+        scrub: 0.1,
+        pin: false,
+        pinSpacing: false,
+      },
+      defaults: {
+        ease: 'linear.none',
+        overwrite: false,
+      },
+    })
+
+    const tlPrev = gsap.timeline({
+      defaults: { ease: 'linear.none' },
+    })
+    const tlCurrent = gsap.timeline({
+      defaults: { ease: 'linear.none' },
+    })
+
+    tl.add(tlPrev, 1)
+
+    tl.add(tlCurrent, 2)
+
+    idx === 0 &&
+      tlPrev.fromTo(
+        $counter.value,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+        },
+        0
+      )
+
+    idx > 0 &&
+      tlPrev.fromTo(
+        $items.value[idx - 1],
+        { opacity: 1 },
+        {
+          opacity: 0,
+          duration: 1,
+        },
+        0
+      )
+
+    idx > 0 &&
+      tlPrev.to(
+        $numbers[idx - 1],
+        {
+          y: '-100%',
+          duration: 1,
+        },
+        0
+      )
+
+    idx > 0 &&
+      tlCurrent.fromTo(
+        $numbers[idx],
+        { y: '100%' },
+        {
+          y: '0%',
+          duration: 1,
+        },
+        0
+      )
+
+    tlCurrent.fromTo(
+      $item,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1,
+      },
+      0
+    )
+
+    tlCurrent.fromTo(
+      $hChars[idx],
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.1,
+        stagger: 0.03,
+      },
+      0
+    )
+
+    tlCurrent.fromTo(
+      $mChars[idx],
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.1,
+        stagger: 0.03,
+      },
+      1
+    )
+
+    tlCurrent.fromTo(
+      $pChars[idx],
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.1,
+        stagger: 0.03,
+      },
+      2
+    )
+
+    idx === 2 &&
+      tlCurrent.fromTo(
+        '.home-7__btn-wrapper',
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+        },
+        3
+      )
+
+    resize.on(() => {
+      tl.scrollTrigger.refresh()
+    })
+  })
+
+  const st = ScrollTrigger.create({
+    trigger: $el.value,
+    start: () => 'top top',
+    end: () => 'bottom bottom',
+    scrub: true,
+    pin: true,
+    pinSpacing: false,
+    anticipatePin: 1,
+    markers: false,
+  })
+
+  resize.on(() => {
+    st.refresh()
+  })
+}
+
+onMounted(() => {
+  initAnimations()
+})
+
+const items = [
   {
     title: 'Simplified',
     mediumText:
@@ -25,42 +207,50 @@ const infoText = [
 </script>
 
 <template>
-  <section class="section section--nm home-7">
-    <div class="container grid home-7__wrapper">
-      <AboutInfo class="home-7__about-text">Approach </AboutInfo>
-      <div class="home-7__content">
-        <div
-          v-for="(el, idx) in infoText"
-          :key="idx"
-          class="home-7__info-wrapper"
-          :class="idx === 0 && 'home-7__info-wrapper--active'"
-        >
-          <div class="home-7__text-list">
-            <p class="home-7__title">{{ el.title }}</p>
-            <p class="home-7__med-desc">
-              {{ el.mediumText }}
-            </p>
-            <p class="home-7__small-desc">
-              {{ el.smallText }}
+  <div ref="$el" class="pin-wrapper home-7-pin-wrapper">
+    <section class="section section--nm home-7">
+      <div class="container grid home-7__wrapper">
+        <AboutInfo class="home-7__about-text">Approach </AboutInfo>
+        <div class="home-7__content">
+          <div
+            v-for="(el, idx) in items"
+            :key="idx"
+            ref="$items"
+            class="home-7__info-wrapper"
+            :class="
+              idx === Math.round(activeIdx) && 'home-7__info-wrapper--active'
+            "
+          >
+            <div class="home-7__text-list">
+              <p class="home-7__title">{{ el.title }}</p>
+              <p class="home-7__med-desc">
+                {{ el.mediumText }}
+              </p>
+              <p class="home-7__small-desc">
+                {{ el.smallText }}
+              </p>
+              <div v-if="idx === items.length - 1" class="home-7__btn-wrapper">
+                <TheButton> Learn More </TheButton>
+              </div>
+            </div>
+          </div>
+          <div class="home-7__pages-wrapper">
+            <p ref="$counter" class="home-7__numbers">
+              <span class="home-7__number">
+                <span class="home-7__number-val home-7__number-val--0">1</span>
+                <span class="home-7__number-val home-7__number-val--1">2</span>
+                <span class="home-7__number-val home-7__number-val--2"
+                  >3</span
+                > </span
+              >/
+              <span class="home-7__number">3</span>
             </p>
           </div>
         </div>
-        <div class="home-7__btn-wrapper">
-          <TheButton> Learn More </TheButton>
-        </div>
-        <div class="home-7__pages-wrapper">
-          <p class="home-7__numbers">
-            <span class="home-7__number">1 </span>/
-            <span class="home-7__number">3</span>
-          </p>
+        <div class="home-7__img-wrapper">
+          <TheVideo class="home-7__img" src="/video/6.mp4" />
         </div>
       </div>
-      <div class="home-7__img-wrapper">
-        <TheVideo class="home-7__img" src="/video/6.mp4" />
-      </div>
-      <div class="home-7__btn-mob">
-        <TheButton> Learn More </TheButton>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>

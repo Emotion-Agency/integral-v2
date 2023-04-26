@@ -2,7 +2,6 @@ import emitter from 'tiny-emitter/instance'
 
 import { ImgLoader } from './ImgLoader'
 import { Canvas } from './Canvas'
-import Scrolling from './Scrolling'
 
 export class ScrollSequence {
   constructor(opts) {
@@ -14,6 +13,8 @@ export class ScrollSequence {
     this.container = opts.container
 
     this.scrollWith = opts.container
+
+    this.eventName = opts.eventName
 
     const imgs = this.opts.images
 
@@ -36,11 +37,6 @@ export class ScrollSequence {
       cover: this.opts.cover,
     })
 
-    this.scroller = new Scrolling(
-      this.container,
-      this.container.parentElement.parentElement.parentElement.parentElement
-    )
-
     this.init()
 
     this.changeOnWindowScroll = this.changeOnWindowScroll.bind(this)
@@ -53,7 +49,7 @@ export class ScrollSequence {
     })
 
     this.loader.once('IMAGES_LOADED', () => {
-      emitter.on('sequence', this.changeOnWindowScroll)
+      emitter.on(this.eventName, this.changeOnWindowScroll)
     })
 
     this.loader.on('PROGRESS', percent => {
@@ -71,6 +67,6 @@ export class ScrollSequence {
   }
 
   destroy() {
-    emitter.off('sequence', this.changeOnWindowScroll)
+    emitter.off(this.eventName, this.changeOnWindowScroll)
   }
 }
