@@ -1,6 +1,6 @@
 .home-5 {
+  height: 1000vh;
   @media (min-width: $br1) {
-    height: 100vh;
     padding-top: vw(90);
     padding-bottom: vw(90);
   }
@@ -14,10 +14,21 @@
   }
 }
 
+.home-5__background,
+.home-5 canvas {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  overflow: hidden;
+
+  object-fit: cover;
+}
+
 .home-5__wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
   position: relative;
   width: 100%;
   height: 100%;
@@ -34,11 +45,28 @@
   }
 }
 
+.scroll-sequence__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vh;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+
 .home-5__img {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: 90vh;
+  width: 90vh;
+  // object-fit: contain;
 
   @media (max-width: $br1) {
     max-height: 960px;
@@ -112,7 +140,7 @@
       @include underline;
 
       &::before {
-        transform: scaleX(1);
+        transform: scaleX(var(--a-progress));
       }
     }
   }

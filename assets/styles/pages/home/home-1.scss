@@ -38,6 +38,7 @@
   &--underline {
     .home-1__underline-text {
       &::before {
+        transition: transform 0.6s ease;
         transform: scaleX(1);
       }
     }
