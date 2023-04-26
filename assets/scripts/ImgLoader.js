@@ -1,6 +1,6 @@
-import { EventEmitter } from './EventEmitter'
+import { TinyEmitter } from 'tiny-emitter'
 
-export class ImgLoader extends EventEmitter {
+export class ImgLoader extends TinyEmitter {
   constructor(opts) {
     super()
 
