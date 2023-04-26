@@ -79,7 +79,7 @@ const initAnimations = () => {
 }
 
 onMounted(async () => {
-  const initImages = new Array(171).fill(0).map((_, i) => {
+  const initImages = new Array(86).fill(0).map((_, i) => {
     const filename = `/images/sequence-1/${i + 1}.jpg`
     return filename
   })

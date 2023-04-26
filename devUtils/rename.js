@@ -2,7 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const folderPath = 'public/images/sequence-2/' // Replace with your folder path
+const folderPath = 'public/images/sequence-1/' // Replace with your folder path
 
 fs.readdir(folderPath, (err, files) => {
   if (err) {
