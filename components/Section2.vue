@@ -221,7 +221,7 @@ onMounted(async () => {
   })
 
   sp.value = new SectionRevealer($revealSection.value)
-  await delayPromise(10)
+  await delayPromise(1000)
   sp.value.init()
 })
 

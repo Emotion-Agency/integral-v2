@@ -2,6 +2,7 @@
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { resize } from '@emotionagency/utils'
+import emitter from 'tiny-emitter/instance'
 
 import { shuffleText } from '~/assets/scripts/shuffleText.js'
 
@@ -10,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger)
 let scrollSequence
 
 const $el = ref<HTMLElement>(null)
+
 const $sequenceContainer = ref<HTMLElement>(null)
 const $text = ref<HTMLElement>(null)
 
@@ -30,6 +32,20 @@ const initTimeline = () => {
     defaults: {
       ease: 'linear.none',
       overwrite: true,
+    },
+  })
+
+  const st = ScrollTrigger.create({
+    trigger: $el.value,
+    start: () => 'top top',
+    end: () => 'bottom bottom',
+    scrub: true,
+    pin: true,
+    pinSpacing: false,
+    anticipatePin: 1,
+    markers: false,
+    onUpdate: ({ progress }) => {
+      emitter.emit('sequence', progress * 100)
     },
   })
 
@@ -58,6 +74,7 @@ const initTimeline = () => {
 
   resize.on(() => {
     tl.scrollTrigger.refresh()
+    st.refresh()
   })
 }
 
@@ -84,24 +101,28 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section ref="$el" class="section section--nm home-5">
-    <div class="container home-5__wrapper">
-      <div class="scroll-sequence__wrapper">
-        <div
-          ref="$sequenceContainer"
-          data-loaded="0"
-          class="home-5__img home-5__background scroll-sequence"
-          src="/video/2.mp4"
-        />
-        <div class="home-5__text-wrapper">
-          <p ref="$text" class="home-5__text">
-            <span class="home-5__subtext"> We tailor each experience </span>
-            <span class="home-5__subtext"> around your story, </span>
-            <span class="home-5__subtext"> creating strategic solutions </span>
-            <span class="home-5__subtext"> as unique as your vision </span>
-          </p>
+  <div ref="$el" class="pin-wrapper home-5-pin-wrapper">
+    <section class="section section--nm home-5">
+      <div class="container home-5__wrapper">
+        <div class="scroll-sequence__wrapper">
+          <div
+            ref="$sequenceContainer"
+            data-loaded="0"
+            class="home-5__img home-5__background scroll-sequence"
+            src="/video/2.mp4"
+          />
+          <div class="home-5__text-wrapper">
+            <p ref="$text" class="home-5__text">
+              <span class="home-5__subtext"> We tailor each experience </span>
+              <span class="home-5__subtext"> around your story, </span>
+              <span class="home-5__subtext">
+                creating strategic solutions
+              </span>
+              <span class="home-5__subtext"> as unique as your vision </span>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>

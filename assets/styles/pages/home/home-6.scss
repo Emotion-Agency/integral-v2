@@ -1,3 +1,8 @@
+.home-6-pin-wrapper {
+  height: 500vh;
+  overflow: hidden;
+}
+
 .home-6 {
   height: 100vh;
   padding-bottom: vh(60);
@@ -33,8 +38,9 @@
 }
 
 .home-6__info {
-  color: var(--dark);
-
+  color: var(--white);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
   @media (min-width: $br1) {
     &:nth-of-type(2n + 1) {
       @include col(3, 6);
@@ -46,13 +52,7 @@
   }
 
   &--active {
-    color: var(--white);
-
-    svg {
-      path {
-        fill: var(--white);
-      }
-    }
+    opacity: 1;
   }
 }
 
@@ -92,6 +92,10 @@
     display: block;
     width: 100%;
     height: 100%;
+
+    path {
+      fill: var(--white);
+    }
   }
 }
 

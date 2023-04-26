@@ -1,4 +1,5 @@
-import { raf } from '@emotionagency/utils'
+import emitter from 'tiny-emitter/instance'
+
 import { ImgLoader } from './ImgLoader'
 import { Canvas } from './Canvas'
 import Scrolling from './Scrolling'
@@ -35,7 +36,10 @@ export class ScrollSequence {
       cover: this.opts.cover,
     })
 
-    this.scroller = new Scrolling(this.container, this.container.parentElement.parentElement)
+    this.scroller = new Scrolling(
+      this.container,
+      this.container.parentElement.parentElement.parentElement.parentElement
+    )
 
     this.init()
 
@@ -49,7 +53,7 @@ export class ScrollSequence {
     })
 
     this.loader.once('IMAGES_LOADED', () => {
-      raf.on(this.changeOnWindowScroll)
+      emitter.on('sequence', this.changeOnWindowScroll)
     })
 
     this.loader.on('PROGRESS', percent => {
@@ -57,18 +61,16 @@ export class ScrollSequence {
     })
   }
 
-  changeOnWindowScroll() {
+  changeOnWindowScroll(progress) {
     const step = 100 / (this.images.length - 1)
-    const mapToIndex = Math.floor(this.percentScrolled / step)
+    const mapToIndex = Math.floor(progress / step)
+
+    console.log(progress)
 
     this.canvas.renderIndex(mapToIndex)
   }
 
-  get percentScrolled() {
-    return this.scroller.percentScrolled * 100
-  }
-
   destroy() {
-    raf.off(this.changeOnWindowScroll)
+    emitter.off('sequence', this.changeOnWindowScroll)
   }
 }

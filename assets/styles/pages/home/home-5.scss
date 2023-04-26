@@ -1,8 +1,10 @@
-.home-5 {
+.home-5-pin-wrapper {
   height: 1000vh;
+}
+
+.home-5 {
   @media (min-width: $br1) {
-    padding-top: vw(90);
-    padding-bottom: vw(90);
+    height: 100vh;
   }
 
   @media (max-width: $br1) {

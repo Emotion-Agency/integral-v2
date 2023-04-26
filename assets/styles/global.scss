@@ -26,6 +26,12 @@ body {
   }
 }
 
+main {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
 .e-fixed {
   overflow: hidden !important;
 }
