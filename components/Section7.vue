@@ -284,7 +284,11 @@ const items = [
           </div>
         </div>
         <div class="home-7__img-wrapper">
-          <div ref="$sequenceContainer" class="home-7__img"></div>
+          <div
+            ref="$sequenceContainer"
+            data-loaded="0"
+            class="home-7__img"
+          ></div>
           <!-- <TheVideo class="home-7__img" src="/video/6.mp4" /> -->
         </div>
       </div>

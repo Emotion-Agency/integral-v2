@@ -1,0 +1,12 @@
+.e-loader {
+  background-color: var(--black);
+  @include coverdiv(fixed);
+  z-index: 10000;
+}
+
+.e-loader__percent {
+  position: absolute;
+  right: 60px;
+  top: 20px;
+  font-size: 20px;
+}

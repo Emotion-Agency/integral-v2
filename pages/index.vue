@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import gsap from 'gsap'
+
 import { shuffleText } from '~/assets/scripts/shuffleText'
 import { pageTransition } from '~~/assets/scripts/transition'
 
