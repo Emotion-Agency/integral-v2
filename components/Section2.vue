@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import { resize, delayPromise } from '@emotionagency/utils'
+import { resize } from '@emotionagency/utils'
 import { shuffleText } from '~/assets/scripts/shuffleText.js'
 import { SectionRevealer } from '~/assets/scripts/SectionRevealer'
 
@@ -211,7 +211,7 @@ const mobileAnimations = () => {
   )
 }
 
-onMounted(async () => {
+onMounted(() => {
   resize.on(() => {
     if (window.innerWidth > 1024) {
       desktopAnimations()
@@ -221,7 +221,6 @@ onMounted(async () => {
   })
 
   sp.value = new SectionRevealer($revealSection.value)
-  await delayPromise(1000)
   sp.value.init()
 })
 
