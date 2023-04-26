@@ -2,6 +2,7 @@
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { resize } from '@emotionagency/utils'
+import emitter from 'tiny-emitter/instance'
 
 import { shuffleText } from '~/assets/scripts/shuffleText.js'
 
@@ -170,6 +171,9 @@ const initAnimations = () => {
     pinSpacing: false,
     anticipatePin: 1,
     markers: false,
+    onUpdate: ({ progress }) => {
+      emitter.emit('sequence-2', progress * 100)
+    },
   })
 
   resize.on(() => {
@@ -177,8 +181,29 @@ const initAnimations = () => {
   })
 }
 
-onMounted(() => {
+let scrollSequence
+const $sequenceContainer = ref<HTMLElement>(null)
+
+onMounted(async () => {
+  const initImages = new Array(200).fill(0).map((_, i) => {
+    const filename = `/images/sequence-2/${i + 1}.jpg`
+    return filename
+  })
+
+  const { ScrollSequence } = await import('~/assets/scripts/PlaySequence')
+  scrollSequence = new ScrollSequence({
+    container: $sequenceContainer.value,
+    images: initImages,
+    priorityFrames: [],
+    cover: true,
+    eventName: 'sequence-2',
+  })
+
   initAnimations()
+})
+
+onBeforeUnmount(() => {
+  scrollSequence && scrollSequence.destroy()
 })
 
 const items = [
@@ -247,8 +272,8 @@ const items = [
             </p>
           </div>
         </div>
-        <div class="home-7__img-wrapper">
-          <TheVideo class="home-7__img" src="/video/6.mp4" />
+        <div ref="$sequenceContainer" class="home-7__img-wrapper">
+          <!-- <TheVideo class="home-7__img" src="/video/6.mp4" /> -->
         </div>
       </div>
     </section>
