@@ -194,7 +194,7 @@ onMounted(async () => {
   scrollSequence = new ScrollSequence({
     container: $sequenceContainer.value,
     images: initImages,
-    priorityFrames: [],
+    priorityFrames: [1],
     cover: true,
     eventName: 'sequence-2',
   })
