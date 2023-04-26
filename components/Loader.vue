@@ -22,7 +22,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="loaded < 100" class="e-loader">
-    <span class="e-loader__percent">{{ loaded }}%</span>
-  </div>
+  <Transition name="fade">
+    <div v-if="loaded < 100" class="e-loader">
+      <span class="e-loader__percent">{{ loaded }}%</span>
+    </div>
+  </Transition>
 </template>
