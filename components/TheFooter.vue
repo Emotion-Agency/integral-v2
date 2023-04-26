@@ -43,7 +43,7 @@ const socialLinks = [
 </script>
 
 <template>
-  <footer class="footer">
+  <footer id="contact" class="footer">
     <div class="container footer__wrapper">
       <div class="footer__email">
         <h3 class="footer__title">

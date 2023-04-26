@@ -61,8 +61,6 @@ export class ScrollSequence {
     const step = 100 / (this.images.length - 1)
     const mapToIndex = Math.floor(progress / step)
 
-    console.log(progress)
-
     this.canvas.renderIndex(mapToIndex)
   }
 

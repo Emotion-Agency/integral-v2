@@ -110,7 +110,7 @@ onMounted(() => {
 
 <template>
   <div ref="$el" class="pin-wrapper home-4-pin-wrapper">
-    <section class="section section--nm home-4">
+    <section id="about" class="section section--nm home-4">
       <div class="container home-4__wrapper">
         <AboutInfo class="home-4__mob-text">About </AboutInfo>
         <div class="home-4__info-wrapper home-4__info-wrapper--1">

@@ -5,6 +5,14 @@ const onClick = () => {
   isOpened.value = !isOpened.value
 }
 
+watch(isOpened, () => {
+  if (isOpened.value) {
+    window.ss.isFixed = true
+  } else {
+    window.ss.isFixed = false
+  }
+})
+
 let navbarPos
 
 const $header = ref<HTMLElement>()

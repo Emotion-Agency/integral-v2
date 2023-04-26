@@ -1,7 +1,9 @@
-.nav-hidden {
-  .navbar {
-    transform: translateY(-100%);
-    opacity: 0;
+*:not(.e-fixed) {
+  .nav-hidden {
+    .navbar {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
   }
 }
 

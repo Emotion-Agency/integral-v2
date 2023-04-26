@@ -244,7 +244,7 @@ const items = [
 
 <template>
   <div ref="$el" class="pin-wrapper home-7-pin-wrapper">
-    <section class="section section--nm home-7">
+    <section id="approach" class="section section--nm home-7">
       <div class="container grid home-7__wrapper">
         <AboutInfo class="home-7__about-text">Approach </AboutInfo>
         <div class="home-7__content">
@@ -283,7 +283,8 @@ const items = [
             </p>
           </div>
         </div>
-        <div ref="$sequenceContainer" class="home-7__img-wrapper">
+        <div class="home-7__img-wrapper">
+          <div ref="$sequenceContainer" class="home-7__img"></div>
           <!-- <TheVideo class="home-7__img" src="/video/6.mp4" /> -->
         </div>
       </div>

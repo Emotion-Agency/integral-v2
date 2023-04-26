@@ -70,6 +70,19 @@
   @media (max-width: $br4) {
     font-size: vw(24, $minWidth);
   }
+
+  &:hover {
+    .popup__nav-el {
+      opacity: 0.5;
+    }
+  }
+}
+
+.popup__nav-el {
+  transition: opacity 0.4s $easing;
+  &:hover {
+    opacity: 1 !important;
+  }
 }
 
 .popup__socials-menu {
@@ -89,5 +102,18 @@
 
   @media (max-width: $br4) {
     font-size: vw(12, $minWidth);
+  }
+
+  &:hover {
+    .popup__social {
+      opacity: 0.5;
+    }
+  }
+}
+
+.popup__social {
+  transition: opacity 0.4s $easing;
+  &:hover {
+    opacity: 1 !important;
   }
 }
