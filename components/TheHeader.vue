@@ -7,9 +7,9 @@ const onClick = () => {
 
 watch(isOpened, () => {
   if (isOpened.value) {
-    window.ss.isFixed = true
+    window.ss && (window.ss.isFixed = true)
   } else {
-    window.ss.isFixed = false
+    window.ss && (window.ss.isFixed = false)
   }
 })
 
@@ -25,13 +25,15 @@ onMounted(async () => {
   navbarPos.init()
 })
 
+const { isLoaded } = useAppState()
+
 onBeforeUnmount(() => {
   navbarPos && navbarPos.destroy()
 })
 </script>
 
 <template>
-  <header ref="$header" class="header navbar">
+  <header ref="$header" class="header navbar" :class="!isLoaded && 'loading'">
     <div class="header__bg"></div>
     <div class="container header__wrapper">
       <NuxtLink to="/" class="header__logo">Integral</NuxtLink>

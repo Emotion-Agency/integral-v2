@@ -2,18 +2,17 @@
 import gsap from 'gsap'
 
 import { shuffleText } from '~/assets/scripts/shuffleText'
-import { pageTransition } from '~~/assets/scripts/transition'
 
-definePageMeta({
-  pageTransition,
-})
-
+const $el = ref<HTMLElement>(null)
 const $h1 = ref<HTMLElement>(null)
 
-onMounted(() => {
+const onLoad = () => {
   const tl = gsap.timeline()
 
   const $h1Chars = shuffleText($h1.value)
+  const $video = $el.value.querySelector('.home-1__bg-animation-container')
+
+  tl.to($video, { duration: 2, height: '100vh', ease: 'power4.inOut' }, 0)
 
   tl.to($h1.value, { duration: 0.1, opacity: 1 }, 0)
 
@@ -28,15 +27,24 @@ onMounted(() => {
         $h1.value.classList.add('home-1__title--underline')
       },
     },
-    0
+    1.5
   )
+}
+const { isLoaded } = useAppState()
+
+watch(isLoaded, () => {
+  onLoad()
 })
 </script>
 
 <template>
   <main>
-    <section class="section section--nm home-1">
-      <TheVideo class="home-1__bg" src="/video/main_new.mp4" />
+    <section ref="$el" class="section section--nm home-1">
+      <div class="home-1__bg-animation-container">
+        <div class="home-1__bg-wrapper">
+          <TheVideo ref="$video" class="home-1__bg" src="/video/main_new.mp4" />
+        </div>
+      </div>
       <div class="container home-1__wrapper">
         <h1 ref="$h1" class="home-1__title">
           A multidisciplinary creative consultancy shaping

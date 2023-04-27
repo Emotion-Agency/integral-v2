@@ -7,7 +7,7 @@ onMounted(async () => {
     mobile: false,
     breakpoint: 1060,
     passive: false,
-    isFixed: false,
+    isFixed: true,
     friction: 0.07,
     stepSize: 0.9,
     scrollbar: true,
@@ -15,6 +15,8 @@ onMounted(async () => {
     saveScrollPosition: process.env.NODE_ENV === 'development',
     raf,
   })
+
+  window.ss.isFixed = true
 })
 
 onBeforeUnmount(() => {
