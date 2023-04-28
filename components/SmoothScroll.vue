@@ -4,6 +4,7 @@ onMounted(async () => {
   const { raf } = await import('@emotionagency/utils')
 
   window.ss = new SmoothScroll({
+    el: document.documentElement,
     mobile: false,
     breakpoint: 1060,
     passive: false,

@@ -1,7 +1,7 @@
 import { raf } from '@emotionagency/utils'
 
 export default class NavbarPos {
-  $sc = document.querySelector('#scroll-container')
+  $sc = document.documentElement
   hovered = false
 
   constructor($el) {
