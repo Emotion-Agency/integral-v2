@@ -14,7 +14,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 80%;
+  @media (min-width: $br1) {
+    width: 80%;
+  }
 }
 
 .e-loader__progress-wrapper {
@@ -41,8 +43,8 @@
   width: 100%;
 }
 .e-loader__text {
-  font-size: clamp(16px, vw(20), 20px);
+  font-size: clamp(12px, vw(20), 20px);
 }
 .e-loader__percent {
-  font-size: clamp(16px, vw(20), 20px);
+  font-size: clamp(12px, vw(20), 20px);
 }

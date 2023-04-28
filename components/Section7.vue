@@ -210,7 +210,9 @@ onMounted(async () => {
     eventName: 'sequence-2',
   })
 
-  initAnimations()
+  if (window.innerWidth > 1024) {
+    initAnimations()
+  }
 })
 
 onBeforeUnmount(() => {

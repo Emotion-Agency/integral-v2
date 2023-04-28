@@ -1,13 +1,15 @@
 .home-7-pin-wrapper {
-  height: 1000vh;
+  @media (min-width: $br1) {
+    height: 1000vh;
+  }
 }
 
 .home-7 {
   @media (min-width: $br1) {
     height: var(--vh);
     padding-top: vh(40);
-    padding-bottom: vh(40);
   }
+  padding-bottom: clamp(20px, vh(40), 40px);
 
   @media (max-width: $br1) {
     margin-top: 160px;

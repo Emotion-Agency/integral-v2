@@ -76,7 +76,7 @@ onMounted(() => {
         </div>
         <div class="e-loader__content-wrapper">
           <div ref="$loaderText" class="e-loader__text">
-            [ &lt;&gt; {{ loaderPhrases[currentIdx] }}... &lt;/&gt; ]
+            [ {{ loaderPhrases[currentIdx] }}... ]
           </div>
           <span ref="$loaderCounter" class="e-loader__percent"
             >{{ loaded }}%</span

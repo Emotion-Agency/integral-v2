@@ -31,7 +31,7 @@ useHead({
       <Loader />
       <TheHeader />
       <slot />
-      <TheFooter />
+      <!-- <TheFooter /> -->
     </SmoothScroll>
   </div>
 </template>
