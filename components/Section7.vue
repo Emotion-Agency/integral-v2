@@ -197,7 +197,9 @@ const initAnimations = () => {
 
 onMounted(async () => {
   const initImages = new Array(100).fill(0).map((_, i) => {
-    const filename = `/images/sequence-2/${i + 1}.jpg`
+    const filename = `https://integral-v2.vercel.app/images/sequence-2/${
+      i + 1
+    }.jpg`
     return filename
   })
 
@@ -205,7 +207,6 @@ onMounted(async () => {
   scrollSequence = new ScrollSequence({
     container: $sequenceContainer.value,
     images: initImages,
-    priorityFrames: [1],
     cover: true,
     eventName: 'sequence-2',
   })
