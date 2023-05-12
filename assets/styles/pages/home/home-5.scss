@@ -168,7 +168,7 @@
       @include underline;
 
       &::before {
-        transform: scaleX(1);
+        transform: scaleX(var(--a-progress));
 
         @media (max-width: $br1) {
           height: size(2.5, 2);
