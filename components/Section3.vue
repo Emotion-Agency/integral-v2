@@ -28,7 +28,12 @@ const initAnimations = () => {
     },
   })
 
-  tl.fromTo($video.value, { scale: 0.5 }, { scale: 1 }, 0)
+  tl.fromTo(
+    $video.value,
+    { scale: 0.5, opacity: 0.5 },
+    { scale: 1, opacity: 1 },
+    0
+  )
 
   resize.on(() => {
     tl.scrollTrigger.refresh()
@@ -57,7 +62,7 @@ onBeforeUnmount(() => {
       <div ref="$el" class="pin-wrapper home-3-pin-wrapper">
         <section class="section section--nm home-3">
           <div ref="$video" class="home-3__wrapper">
-            <TheVideo class="home-3__content" src="/video/main_new.mp4" />
+            <TheVideo class="home-3__content" src="/video/22.mp4" />
           </div>
         </section>
       </div>
