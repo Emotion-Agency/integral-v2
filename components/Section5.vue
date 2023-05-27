@@ -77,22 +77,15 @@ const initAnimations = () => {
     st.refresh()
   })
 }
-const $img = useImage()
 
 const initImages = computed(() => {
   return new Array(86).fill(0).map((_, i) => {
-    // const filename = $img(`/images/sequence-1/${i + 1}.jpg`, {
-    //   format: 'webp',
-    //   quality: 10,
-    // })
-
     const filename = `/images/sequence-1/${i + 1}.jpg`
     return filename
   })
 })
 
 onMounted(async () => {
-  console.log(initImages.value)
   const { ScrollSequence } = await import('~/assets/scripts/PlaySequence')
   scrollSequence = new ScrollSequence({
     container: $sequenceContainer.value,
@@ -120,12 +113,7 @@ onBeforeUnmount(() => {
             class="home-5__img home-5__background scroll-sequence"
             src="/video/2.mp4"
           />
-          <nuxt-img
-            v-for="img in initImages"
-            :key="img"
-            :src="img"
-            :preload="true"
-          />
+
           <div class="home-5__text-wrapper">
             <p ref="$text" class="home-5__text">
               <span class="home-5__subtext"> We tailor each experience </span>

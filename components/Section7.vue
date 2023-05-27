@@ -197,11 +197,6 @@ const initAnimations = () => {
 
 const initImages = computed(() => {
   return new Array(100).fill(0).map((_, i) => {
-    // const filename = $img(`/images/sequence-1/${i + 1}.jpg`, {
-    //   format: 'webp',
-    //   quality: 10,
-    // })
-
     const filename = `/images/sequence-2/${i + 1}.jpg`
     return filename
   })
@@ -211,7 +206,7 @@ onMounted(async () => {
   const { ScrollSequence } = await import('~/assets/scripts/PlaySequence')
   scrollSequence = new ScrollSequence({
     container: $sequenceContainer.value,
-    images: initImages,
+    images: initImages.value,
     cover: true,
     eventName: 'sequence-2',
   })
@@ -265,12 +260,6 @@ const items = [
               idx === Math.round(activeIdx) && 'home-7__info-wrapper--active'
             "
           >
-            <nuxt-img
-              v-for="img in initImages"
-              :key="img"
-              :src="img"
-              :preload="true"
-            />
             <div class="home-7__text-list">
               <p class="home-7__title">{{ el.title }}</p>
               <p class="home-7__med-desc">
