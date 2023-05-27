@@ -13,9 +13,8 @@ const $about = ref<HTMLElement>(null)
 const $btn = ref<HTMLElement>(null)
 const $video = ref<HTMLElement>(null)
 
-gsap.registerPlugin(ScrollTrigger)
-
 const createTimeline = () => {
+  gsap.registerPlugin(ScrollTrigger)
   const $hSpans = shuffleText($heading.value)
   const $h2Spans = shuffleText($heading2.value)
   const $textSpans = shuffleText($text.value)

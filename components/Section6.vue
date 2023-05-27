@@ -3,13 +3,12 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { resize } from '@emotionagency/utils'
 
-gsap.registerPlugin(ScrollTrigger)
-
 const $el = ref<HTMLElement>(null)
 const $services = ref<NodeListOf<HTMLElement>>(null)
 const activeIdx = ref(0)
 
 const initAnimations = () => {
+  gsap.registerPlugin(ScrollTrigger)
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: $el.value,

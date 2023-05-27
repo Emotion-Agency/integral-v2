@@ -15,9 +15,9 @@ const $counter2 = ref<HTMLElement>(null)
 const $revealSection = ref<HTMLElement>(null)
 const sp = ref(null)
 
-gsap.registerPlugin(ScrollTrigger)
-
 const desktopAnimations = () => {
+  gsap.registerPlugin(ScrollTrigger)
+
   const $text1Chars = shuffleText($text1.value)
   const $text2Chars = shuffleText($text2.value)
 
@@ -158,6 +158,8 @@ const desktopAnimations = () => {
 }
 
 const mobileAnimations = () => {
+  gsap.registerPlugin(ScrollTrigger)
+
   const $text1Chars = shuffleText($text1.value)
   const $text2Chars = shuffleText($text2.value)
 

@@ -6,8 +6,6 @@ import emitter from 'tiny-emitter/instance'
 
 import { shuffleText } from '~/assets/scripts/shuffleText.js'
 
-gsap.registerPlugin(ScrollTrigger)
-
 let scrollSequence
 
 const $el = ref<HTMLElement>(null)
@@ -16,6 +14,8 @@ const $sequenceContainer = ref<HTMLElement>(null)
 const $text = ref<HTMLElement>(null)
 
 const initAnimations = () => {
+  gsap.registerPlugin(ScrollTrigger)
+
   const $spans = [...$text.value.querySelectorAll('.home-5__subtext')].map(
     (el: HTMLElement) => shuffleText(el)
   )
@@ -77,19 +77,26 @@ const initAnimations = () => {
     st.refresh()
   })
 }
+const $img = useImage()
 
-onMounted(async () => {
-  const initImages = new Array(86).fill(0).map((_, i) => {
-    const filename = `https://integral-v2.vercel.app/images/sequence-1/${
-      i + 1
-    }.jpg`
+const initImages = computed(() => {
+  return new Array(86).fill(0).map((_, i) => {
+    // const filename = $img(`/images/sequence-1/${i + 1}.jpg`, {
+    //   format: 'webp',
+    //   quality: 10,
+    // })
+
+    const filename = `/images/sequence-1/${i + 1}.jpg`
     return filename
   })
+})
 
+onMounted(async () => {
+  console.log(initImages.value)
   const { ScrollSequence } = await import('~/assets/scripts/PlaySequence')
   scrollSequence = new ScrollSequence({
     container: $sequenceContainer.value,
-    images: initImages,
+    images: initImages.value,
     cover: true,
     eventName: 'sequence-1',
   })
@@ -112,6 +119,12 @@ onBeforeUnmount(() => {
             data-loaded="0"
             class="home-5__img home-5__background scroll-sequence"
             src="/video/2.mp4"
+          />
+          <nuxt-img
+            v-for="img in initImages"
+            :key="img"
+            :src="img"
+            :preload="true"
           />
           <div class="home-5__text-wrapper">
             <p ref="$text" class="home-5__text">

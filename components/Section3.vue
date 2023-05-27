@@ -11,9 +11,8 @@ const $video = ref<HTMLElement>(null)
 
 const sp = ref(null)
 
-gsap.registerPlugin(ScrollTrigger)
-
 const initAnimations = () => {
+  gsap.registerPlugin(ScrollTrigger)
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: $el.value,

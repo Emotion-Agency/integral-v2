@@ -14,4 +14,15 @@ export default defineNuxtConfig({
       ENVIROMENT: process.env.NODE_ENV,
     },
   },
+
+  modules: ['@nuxt/image-edge'],
+
+  image: {
+    screens: {
+      xs: 460,
+      lg: 1060,
+      xl: 1280,
+    },
+    provider: 'ipx',
+  },
 })

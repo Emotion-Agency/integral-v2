@@ -9,6 +9,7 @@
     "fi": "node devUtils/fontsInclude.js && prettier --write ./composables/fonts.ts"
   },
   "devDependencies": {
+    "@nuxt/image-edge": "^1.0.0-28085504.69f8eb0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
